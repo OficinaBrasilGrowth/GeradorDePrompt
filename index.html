@@ -2,15 +2,63 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prompt Builder - Editorial + Carro</title>
   <style>
-    body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
-    .container { background: white; padding: 20px; border-radius: 12px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h2 { margin-top: 20px; }
-    select, input[type=text], textarea, datalist { width: 100%; padding: 10px; margin: 8px 0 16px; border: 1px solid #ccc; border-radius: 8px; }
-    button { padding: 12px 20px; background: #5a2fbe; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-    button:hover { background: #431b94; }
-    pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 20px;
+    }
+    select, input[type=text], textarea, datalist {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 12px 20px;
+      background: #5a2fbe;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #431b94;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -18,6 +66,85 @@
     <h1>Prompt Builder – Editorial de Moda + Carro</h1>
 
     <form id="promptForm">
+      <h2>Cenário</h2>
+      <label>Tipo de local</label>
+      <select name="local">
+        <option value="Estacionamento no topo de prédio|Rooftop parking lot">Estacionamento no topo de prédio</option>
+        <option value="Rodovia no deserto|Desert highway">Rodovia no deserto</option>
+        <option value="Rua de luxo urbana|Luxury city street">Rua de luxo urbana</option>
+        <option value="Fundo de armazém industrial|Industrial warehouse background">Fundo de armazém industrial</option>
+        <option value="Entrada de mansão moderna|Modern villa driveway">Entrada de mansão moderna</option>
+      </select>
+
+      <label>Condição do clima</label>
+      <select name="clima">
+        <option value="ensolarado e limpo|sunny and clear">Ensolarado e limpo</option>
+        <option value="nublado|overcast">Nublado</option>
+        <option value="luz dourada do fim de tarde|golden hour">Luz dourada do fim de tarde</option>
+        <option value="noite com luzes da cidade|night with city lights">Noite com luzes da cidade</option>
+      </select>
+
+      <label>Céu</label>
+      <select name="ceu">
+        <option value="azul brilhante sem nuvens|bright blue with no clouds">Azul brilhante sem nuvens</option>
+        <option value="gradiente suave do pôr do sol|soft gradient sunset">Gradiente suave do pôr do sol</option>
+        <option value="tempestuoso e contrastante|stormy with contrast">Tempestuoso e contrastante</option>
+        <option value="céu noturno estrelado|night sky with stars">Céu noturno estrelado</option>
+      </select>
+
+      <h2>Personagem</h2>
+      <label>Estilo</label>
+      <select name="estilo">
+        <option value="Mulher estilosa com jeans escuro|Stylish woman in dark denim">Mulher estilosa com jeans escuro</option>
+        <option value="Homem streetwear com moletom oversized|Streetwear man in oversized hoodie">Homem streetwear com moletom oversized</option>
+        <option value="Mulher elegante com vestido de seda|Elegant woman in silk dress">Mulher elegante com vestido de seda</option>
+        <option value="Homem com terno sob medida|Man in sharp tailored suit">Homem com terno sob medida</option>
+        <option value="Modelo andrógino com roupa techwear futurista|Androgynous model in futuristic techwear">Modelo andrógino com roupa techwear futurista</option>
+      </select>
+
+      <label>Postura e atitude</label>
+      <select name="atitude">
+        <option value="caminhando com confiança, mãos nos bolsos|walking confidently, hands in pockets">Caminhando com confiança</option>
+        <option value="encostado no carro, postura casual|leaning on car, casual stance">Encostado no carro</option>
+        <option value="olhando para longe da câmera, com ar misterioso|looking away from camera, mysterious vibe">Olhando para longe</option>
+        <option value="sentado no capô, relaxado e estiloso|sitting on hood, relaxed and cool">Sentado no capô</option>
+        <option value="atravessando a cena, em movimento com desfoque|crossing the frame, mid-stride with motion blur">Atravessando a cena</option>
+      </select>
+
+      <h2>Carro</h2>
+      <label>Modelo</label>
+      <input type="text" name="carro" list="carros" placeholder="Digite o modelo do carro (ex: BMW M4 Convertible)">
+      <datalist id="carros">
+        <option value="BMW M4 Convertible">
+        <option value="Porsche 911 Turbo S">
+        <option value="Mercedes-AMG GT">
+        <option value="Audi R8">
+        <option value="Lamborghini Huracán">
+        <option value="Ferrari 488 Spider">
+        <option value="Tesla Roadster">
+        <option value="McLaren 720S">
+        <option value="Chevrolet Corvette Z06">
+        <option value="Aston Martin Vantage">
+      </datalist>
+
+      <label>Cor</label>
+      <select name="cor">
+        <option value="roxo metálico|metallic purple">Roxo metálico</option>
+        <option value="preto brilhante|glossy black">Preto brilhante</option>
+        <option value="prata fosco|matte silver">Prata fosco</option>
+        <option value="vermelho candy|candy red">Vermelho candy</option>
+        <option value="branco perolado|pearl white">Branco perolado</option>
+      </select>
+
+      <label>Detalhes</label>
+      <select name="detalhes">
+        <option value="Capota abaixada, interior visível|Roof down, interior visible">Capota abaixada, interior visível</option>
+        <option value="Faróis acesos com leve névoa|Headlights on, slight fog">Faróis acesos com leve névoa</option>
+        <option value="Reflexo do sol nas rodas cromadas|Sunlight reflection on chrome wheels">Reflexo do sol nas rodas</option>
+        <option value="Portas abertas estilo tesoura|Doors open in scissor style">Portas abertas estilo tesoura</option>
+        <option value="Escape soltando leve fumaça|Exhaust emitting subtle smoke trail">Escape soltando leve fumaça</option>
+      </select>
+
       <h2>Configurações adicionais</h2>
       <label>Distância da câmera (ex: 1 metro)</label>
       <input type="text" name="camera_distancia" placeholder="Ex: 1 metro">
