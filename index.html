@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Prompt Builder - Editorial + Carro</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { background: white; padding: 20px; border-radius: 12px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { margin-top: 20px; }
+    select, input[type=text], textarea, datalist { width: 100%; padding: 10px; margin: 8px 0 16px; border: 1px solid #ccc; border-radius: 8px; }
+    button { padding: 12px 20px; background: #5a2fbe; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #431b94; }
+    pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prompt Builder – Editorial de Moda + Carro</h1>
+
+    <form id="promptForm">
+      <h2>Cenário</h2>
+      <label>Tipo de local</label>
+      <select name="local">
+        <option value="Estacionamento em rooftop|Rooftop parking lot">Estacionamento em rooftop</option>
+        <option value="Rodovia no deserto|Desert highway">Rodovia no deserto</option>
+        <option value="Rua urbana de luxo|Luxury city street">Rua urbana de luxo</option>
+        <option value="Galpão industrial|Industrial warehouse background">Galpão industrial</option>
+        <option value="Garagem de mansão moderna|Modern villa driveway">Garagem de mansão moderna</option>
+      </select>
+
+      <label>Condição do clima</label>
+      <select name="clima">
+        <option value="ensolarado e claro|Sunny and clear">Ensolarado e claro</option>
+        <option value="nublado|Overcast">Nublado</option>
+        <option value="luz dourada do entardecer|Golden hour">Luz dourada do entardecer</option>
+        <option value="noite com luzes urbanas|Night with city lights">Noite com luzes urbanas</option>
+      </select>
+
+      <label>Céu</label>
+      <select name="ceu">
+        <option value="céu azul sem nuvens|Bright blue with no clouds">Céu azul sem nuvens</option>
+        <option value="pôr do sol em degradê|Soft gradient sunset">Pôr do sol em degradê</option>
+        <option value="tempestuoso com contraste|Stormy with contrast">Tempestuoso com contraste</option>
+        <option value="céu noturno estrelado|Night sky with stars">Céu noturno estrelado</option>
+      </select>
+
+      <h2>Personagem</h2>
+      <label>Estilo</label>
+      <select name="estilo">
+        <option value="Mulher estilosa de jaqueta jeans escura|Stylish woman in dark denim">Mulher estilosa de jaqueta jeans escura</option>
+        <option value="Homem de streetwear com moletom oversized|Streetwear man in oversized hoodie">Homem de streetwear com moletom oversized</option>
+        <option value="Mulher elegante com vestido de seda|Elegant woman in silk dress">Mulher elegante com vestido de seda</option>
+        <option value="Homem com terno sob medida|Man in sharp tailored suit">Homem com terno sob medida</option>
+        <option value="Modelo andrógino com roupa tech futurista|Androgynous model in futuristic techwear">Modelo andrógino com roupa tech futurista</option>
+      </select>
+
+      <label>Postura e atitude</label>
+      <select name="atitude">
+        <option value="Caminhando com confiança, mãos nos bolsos|Walking confidently, hands in pockets">Caminhando com confiança, mãos nos bolsos</option>
+        <option value="Apoiado no carro, postura casual|Leaning on car, casual stance">Apoiado no carro, postura casual</option>
+        <option value="Olhando para longe da câmera, ar misterioso|Looking away from camera, mysterious vibe">Olhando para longe da câmera, ar misterioso</option>
+        <option value="Sentado no capô, relaxado e estiloso|Sitting on hood, relaxed and cool">Sentado no capô, relaxado e estiloso</option>
+        <option value="Atravessando o quadro em movimento|Crossing the frame, mid-stride with motion blur">Atravessando o quadro em movimento</option>
+      </select>
+
+      <h2>Carro</h2>
+      <label>Modelo</label>
+      <input type="text" name="carro" list="carros" placeholder="Digite o modelo do carro (ex: BMW M4 Convertible)">
+      <datalist id="carros">
+        <option value="BMW M4 Convertible">
+        <option value="Porsche 911 Turbo S">
+        <option value="Mercedes-AMG GT">
+        <option value="Audi R8">
+        <option value="Lamborghini Huracán">
+        <option value="Ferrari 488 Spider">
+        <option value="Tesla Roadster">
+        <option value="McLaren 720S">
+        <option value="Chevrolet Corvette Z06">
+        <option value="Aston Martin Vantage">
+      </datalist>
+
+      <label>Cor</label>
+      <select name="cor">
+        <option value="Roxo metálico|Metallic purple">Roxo metálico</option>
+        <option value="Preto brilhante|Glossy black">Preto brilhante</option>
+        <option value="Prata fosco|Matte silver">Prata fosco</option>
+        <option value="Vermelho candy|Candy red">Vermelho candy</option>
+        <option value="Branco perolado|Pearl white">Branco perolado</option>
+      </select>
+
+      <label>Detalhes</label>
+      <select name="detalhes">
+        <option value="Capota abaixada, interior visível|Roof down, interior visible">Capota abaixada, interior visível</option>
+        <option value="Faróis acesos, leve neblina|Headlights on, slight fog">Faróis acesos, leve neblina</option>
+        <option value="Reflexo do sol nas rodas cromadas|Sunlight reflection on chrome wheels">Reflexo do sol nas rodas cromadas</option>
+        <option value="Portas abertas em estilo tesoura|Doors open in scissor style">Portas abertas em estilo tesoura</option>
+        <option value="Escape soltando leve trilha de fumaça|Exhaust emitting subtle smoke trail">Escape soltando leve trilha de fumaça</option>
+      </select>
+
+      <button type="button" onclick="gerarPrompt()">Gerar Prompt</button>
+    </form>
+
+    <h2>Prompt Gerado</h2>
+    <pre id="output"></pre>
+  </div>
+
+  <script>
+    function gerarPrompt() {
+      const form = document.getElementById("promptForm");
+      const data = new FormData(form);
+
+      function extrairValor(valorComposto) {
+        const partes = valorComposto.split('|');
+        return { pt: partes[0], en: partes[1] };
+      }
+
+      const local = extrairValor(data.get("local"));
+      const clima = extrairValor(data.get("clima"));
+      const ceu = extrairValor(data.get("ceu"));
+      const estilo = extrairValor(data.get("estilo"));
+      const atitude = extrairValor(data.get("atitude"));
+      const cor = extrairValor(data.get("cor"));
+      const detalhes = extrairValor(data.get("detalhes"));
+      const carro = data.get("carro");
+
+      const promptPT = `🏙️ ${local.pt} em um dia ${clima.pt}. Céu ${ceu.pt}.
+
+👤 ${estilo.pt}, ${atitude.pt}.
+
+🚗 ${carro}, cor ${cor.pt}. ${detalhes.pt}.
+
+📸 Estilo editorial, estética de luxo com luz natural. Perspectiva em grande angular, composição limpa.`;
+
+      const promptEN = `🏙️ ${local.en} on a ${clima.en} day. ${ceu.en} sky.
+
+👤 ${estilo.en}, ${atitude.en}.
+
+🚗 ${carro}, ${cor.en} finish. ${detalhes.en}.
+
+📸 Editorial style, luxury aesthetic with natural light. Wide-angle perspective, clean composition.`;
+
+      document.getElementById("output").textContent = `${promptPT}\n\n---\n\n${promptEN}`;
+    }
+  </script>
+</body>
+</html>
