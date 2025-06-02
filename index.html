@@ -68,12 +68,13 @@
     <form id="promptForm">
       <h2>Cenário</h2>
 <label>Tipo de local</label>
-<select name="local">
-  <option value="Concessionária moderna com showroom iluminado|Modern car dealership showroom">Concessionária moderna com showroom iluminado</option>
-  <option value="Oficina mecânica clássica com carros antigos|Classic repair shop with vintage cars">Oficina mecânica clássica com carros antigos</option>
-  <option value="Oficina industrial com elevadores hidráulicos|Industrial auto repair shop with hydraulic lifts">Oficina industrial com elevadores hidráulicos</option>
-  <option value="Oficina urbana com ferramentas espalhadas|Urban garage with scattered tools">Oficina urbana com ferramentas espalhadas</option>
-  <option value="Mecânico trabalhando sob carro suspenso|Mechanic working under elevated car">Mecânico trabalhando sob carro suspenso</option>
+<select name="carro">
+  <option value="Volkswagen Nivus">Volkswagen Nivus</option>
+  <option value="Volkswagen Virtus">Volkswagen Virtus</option>
+  <option value="Volkswagen Amarok">Volkswagen Amarok</option>
+  <option value="Volkswagen Golf">Volkswagen Golf</option>
+  <option value="Volkswagen T-Cross">Volkswagen T-Cross</option>
+  <option value="Volkswagen Up TSI">Volkswagen Up TSI</option>
 </select>
 
       <label>Condição do clima</label>
@@ -122,12 +123,12 @@
 
 <h2>Carro</h2>
       <label>Modelo</label>
-<select name="local">
-  <option value="Concessionária moderna com showroom iluminado|Modern car dealership showroom">Concessionária moderna com showroom iluminado</option>
-  <option value="Oficina mecânica clássica com carros antigos|Classic repair shop with vintage cars">Oficina mecânica clássica com carros antigos</option>
-  <option value="Oficina industrial com elevadores hidráulicos|Industrial auto repair shop with hydraulic lifts">Oficina industrial com elevadores hidráulicos</option>
-  <option value="Oficina urbana com ferramentas espalhadas|Urban garage with scattered tools">Oficina urbana com ferramentas espalhadas</option>
-  <option value="Mecânico trabalhando sob carro suspenso|Mechanic working under elevated car">Mecânico trabalhando sob carro suspenso</option>
+<select name="detalhes">
+  <option value="Capô aberto e motor visível|Hood open with engine visible">Capô aberto e motor visível</option>
+  <option value="Rodas cromadas com reflexo de luz|Chrome wheels reflecting light">Rodas cromadas com reflexo de luz</option>
+  <option value="Faróis acesos em ambiente escuro|Headlights on in a dark space">Faróis acesos em ambiente escuro</option>
+  <option value="Carro suspenso por elevador|Car lifted on a hydraulic lift">Carro suspenso por elevador</option>
+  <option value="Luz natural refletida na lataria|Natural light reflecting on car body">Luz natural refletida na lataria</option>
 </select>
 
       <label>Cor</label>
@@ -234,7 +235,6 @@ function copiarPrompt() {
 const coresVW = {
   "Volkswagen Nivus": [
     { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/preto-ninja.png" },
-    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/branco-cristal.png" },
     { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
     { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
     { pt: "Vermelho Sunset", en: "Sunset Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/vermelho-sunset.png" }
@@ -264,7 +264,7 @@ const coresVW = {
     { pt: "Vermelho Flash", en: "Flash Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/vermelho-flash.png" },
     { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/prata-sirius.png" }
   ]
-};,
+};
     { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/branco-cristal.png" },
     { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
     { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
@@ -279,7 +279,7 @@ const coresVW = {
 };
 
 function atualizarCores() {
-  const carroSelecionado = document.querySelector('input[name="carro"]:checked')?.value;
+  const carroSelecionado = document.querySelector('select[name="carro"]')?.value;
   const container = document.getElementById("cores-container");
   const cores = coresVW[carroSelecionado] || [];
   container.innerHTML = cores.map((cor, i) => `
@@ -292,11 +292,10 @@ function atualizarCores() {
 
 // Atualizar cores ao carregar e ao mudar modelo
 atualizarCores();
-document.querySelectorAll('input[name="carro"]').forEach(radio => {
-  radio.addEventListener("change", () => {
-    atualizarCores();
-    gerarPrompt();
-  });
+document.querySelector('select[name="carro"]').addEventListener("change", () => {
+  atualizarCores();
+  gerarPrompt();
+});
 });
 
 </script>
