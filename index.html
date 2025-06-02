@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt Builder - Editorial + Carro</title>
+  <title>Prompt Builder do Biel</title>
   <style>
     body {
       font-family: sans-serif;
@@ -63,11 +63,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>Prompt Builder – Editorial de Moda + Carro</h1>
+    <h1>Prompt Builder do Biel</h1>
 
     <form id="promptForm">
-      <h2>Cenário</h2>
-<label>Tipo de local</label>
+      <h2>Carro</h2>
+<label>Modelo</label>
 <select name="carro">
   <option value="Volkswagen Nivus">Volkswagen Nivus</option>
   <option value="Volkswagen Virtus">Volkswagen Virtus</option>
@@ -77,21 +77,13 @@
   <option value="Volkswagen Up TSI">Volkswagen Up TSI</option>
 </select>
 
-      <label>Condição do clima</label>
-      <select name="clima">
-        <option value="ensolarado e limpo|sunny and clear">Ensolarado e limpo</option>
-        <option value="nublado|overcast">Nublado</option>
-        <option value="luz dourada do fim de tarde|golden hour">Luz dourada do fim de tarde</option>
-        <option value="noite com luzes da cidade|night with city lights">Noite com luzes da cidade</option>
-      </select>
-
-      <label>Céu</label>
-      <select name="ceu">
-        <option value="azul brilhante sem nuvens|bright blue with no clouds">Azul brilhante sem nuvens</option>
-        <option value="gradiente suave do pôr do sol|soft gradient sunset">Gradiente suave do pôr do sol</option>
-        <option value="tempestuoso e contrastante|stormy with contrast">Tempestuoso e contrastante</option>
-        <option value="céu noturno estrelado|night sky with stars">Céu noturno estrelado</option>
-      </select>
+      <label>Iluminação</label>
+<select name="clima">
+  <option value="ensolarado e limpo com céu azul|sunny and clear with blue sky">Ensolarado e limpo com céu azul</option>
+  <option value="nublado com luz difusa|overcast with diffused light">Nublado com luz difusa</option>
+  <option value="luz dourada do fim de tarde com céu gradiente|golden hour with gradient sky">Luz dourada do fim de tarde</option>
+  <option value="noite com céu estrelado e luzes da cidade|night with stars and city lights">Noite com céu estrelado</option>
+</select>
 
       <h2>Personagem</h2>
       <label>Estilo</label>
@@ -122,14 +114,7 @@
 </select>
 
 <h2>Carro</h2>
-      <label>Modelo</label>
-<select name="detalhes">
-  <option value="Capô aberto e motor visível|Hood open with engine visible">Capô aberto e motor visível</option>
-  <option value="Rodas cromadas com reflexo de luz|Chrome wheels reflecting light">Rodas cromadas com reflexo de luz</option>
-  <option value="Faróis acesos em ambiente escuro|Headlights on in a dark space">Faróis acesos em ambiente escuro</option>
-  <option value="Carro suspenso por elevador|Car lifted on a hydraulic lift">Carro suspenso por elevador</option>
-  <option value="Luz natural refletida na lataria|Natural light reflecting on car body">Luz natural refletida na lataria</option>
-</select>
+      
 
       <label>Cor</label>
 <div id="cores-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -190,8 +175,7 @@
       const estilo = extrairValor(data.get("estilo"));
       const atitude = extrairValor(data.get("atitude"));
       const cor = extrairValor(data.get("cor"));
-      const detalhes = extrairValor(data.get("detalhes"));
-const ambiente = extrairValor(data.get("ambiente"));
+      const ambiente = extrairValor(data.get("ambiente"));
       const carro = data.get("carro");
       const lente = extrairValor(data.get("lente"));
       const cameraDistancia = data.get("camera_distancia");
@@ -204,7 +188,7 @@ Ambiente urbano limpo, com estética minimalista e contemporânea. Contexto: ${a
 👤 ${estilo.pt}. Está ${atitude.pt.toLowerCase()}, transmitindo postura técnica e atitude profissional.
 Acessórios: ${acessorios || "nenhum"}.
 
-🚗 Modelo: ${carro}, pintado em ${cor.pt}. ${detalhes.pt}. O carro projeta uma sombra definida no chão, com destaque para os detalhes cromados refletindo a luz.
+🚗 Modelo: ${carro}, pintado em ${cor.pt}. O carro projeta uma sombra definida no chão, com destaque para os detalhes cromados refletindo a luz.
 
 📸 A câmera está posicionada a cerca de ${cameraDistancia || "1 metro"} do chão, com lente ${lente.pt.toLowerCase()}. Cena com ${movimento.pt.toLowerCase()}.
 
@@ -216,7 +200,7 @@ Urban environment with clean, minimalistic and modern aesthetics. Context: ${amb
 👤 ${estilo.en}. ${atitude.en.charAt(0).toUpperCase() + atitude.en.slice(1)} posture conveying technical focus and professional attitude.
 Accessories: ${acessorios || "none"}.
 
-🚗 Model: ${carro}, painted in ${cor.en}. ${detalhes.en}. The car casts a sharp shadow on the ground, with chrome details reflecting the sunlight.
+🚗 Model: ${carro}, painted in ${cor.en}. The car casts a sharp shadow on the ground, with chrome details reflecting the sunlight.
 
 📸 Camera placed about ${cameraDistancia || "1 meter"} off the ground, using a ${lente.en.toLowerCase()}. Scene with ${movimento.en.toLowerCase()}.
 
