@@ -18,83 +18,25 @@
     <h1>Prompt Builder – Editorial de Moda + Carro</h1>
 
     <form id="promptForm">
-      <h2>Cenário</h2>
-      <label>Tipo de local</label>
-      <select name="local">
-        <option value="Estacionamento em rooftop|Rooftop parking lot">Estacionamento em rooftop</option>
-        <option value="Rodovia no deserto|Desert highway">Rodovia no deserto</option>
-        <option value="Rua urbana de luxo|Luxury city street">Rua urbana de luxo</option>
-        <option value="Galpão industrial|Industrial warehouse background">Galpão industrial</option>
-        <option value="Garagem de mansão moderna|Modern villa driveway">Garagem de mansão moderna</option>
+      <h2>Configurações adicionais</h2>
+      <label>Distância da câmera (ex: 1 metro)</label>
+      <input type="text" name="camera_distancia" placeholder="Ex: 1 metro">
+
+      <label>Tipo de lente</label>
+      <select name="lente">
+        <option value="Grande angular 24mm|Wide-angle 24mm">Grande angular 24mm</option>
+        <option value="Lente padrão 35mm|Standard 35mm lens">Lente padrão 35mm</option>
+        <option value="Teleobjetiva 85mm|Telephoto 85mm lens">Teleobjetiva 85mm</option>
       </select>
 
-      <label>Condição do clima</label>
-      <select name="clima">
-        <option value="ensolarado e claro|Sunny and clear">Ensolarado e claro</option>
-        <option value="nublado|Overcast">Nublado</option>
-        <option value="luz dourada do entardecer|Golden hour">Luz dourada do entardecer</option>
-        <option value="noite com luzes urbanas|Night with city lights">Noite com luzes urbanas</option>
-      </select>
+      <label>Acessórios do personagem</label>
+      <input type="text" name="acessorios" placeholder="Ex: Óculos escuros, bolsa tiracolo">
 
-      <label>Céu</label>
-      <select name="ceu">
-        <option value="céu azul sem nuvens|Bright blue with no clouds">Céu azul sem nuvens</option>
-        <option value="pôr do sol em degradê|Soft gradient sunset">Pôr do sol em degradê</option>
-        <option value="tempestuoso com contraste|Stormy with contrast">Tempestuoso com contraste</option>
-        <option value="céu noturno estrelado|Night sky with stars">Céu noturno estrelado</option>
-      </select>
-
-      <h2>Personagem</h2>
-      <label>Estilo</label>
-      <select name="estilo">
-        <option value="Mulher estilosa de jaqueta jeans escura|Stylish woman in dark denim">Mulher estilosa de jaqueta jeans escura</option>
-        <option value="Homem de streetwear com moletom oversized|Streetwear man in oversized hoodie">Homem de streetwear com moletom oversized</option>
-        <option value="Mulher elegante com vestido de seda|Elegant woman in silk dress">Mulher elegante com vestido de seda</option>
-        <option value="Homem com terno sob medida|Man in sharp tailored suit">Homem com terno sob medida</option>
-        <option value="Modelo andrógino com roupa tech futurista|Androgynous model in futuristic techwear">Modelo andrógino com roupa tech futurista</option>
-      </select>
-
-      <label>Postura e atitude</label>
-      <select name="atitude">
-        <option value="Caminhando com confiança, mãos nos bolsos|Walking confidently, hands in pockets">Caminhando com confiança, mãos nos bolsos</option>
-        <option value="Apoiado no carro, postura casual|Leaning on car, casual stance">Apoiado no carro, postura casual</option>
-        <option value="Olhando para longe da câmera, ar misterioso|Looking away from camera, mysterious vibe">Olhando para longe da câmera, ar misterioso</option>
-        <option value="Sentado no capô, relaxado e estiloso|Sitting on hood, relaxed and cool">Sentado no capô, relaxado e estiloso</option>
-        <option value="Atravessando o quadro em movimento|Crossing the frame, mid-stride with motion blur">Atravessando o quadro em movimento</option>
-      </select>
-
-      <h2>Carro</h2>
-      <label>Modelo</label>
-      <input type="text" name="carro" list="carros" placeholder="Digite o modelo do carro (ex: BMW M4 Convertible)">
-      <datalist id="carros">
-        <option value="BMW M4 Convertible">
-        <option value="Porsche 911 Turbo S">
-        <option value="Mercedes-AMG GT">
-        <option value="Audi R8">
-        <option value="Lamborghini Huracán">
-        <option value="Ferrari 488 Spider">
-        <option value="Tesla Roadster">
-        <option value="McLaren 720S">
-        <option value="Chevrolet Corvette Z06">
-        <option value="Aston Martin Vantage">
-      </datalist>
-
-      <label>Cor</label>
-      <select name="cor">
-        <option value="Roxo metálico|Metallic purple">Roxo metálico</option>
-        <option value="Preto brilhante|Glossy black">Preto brilhante</option>
-        <option value="Prata fosco|Matte silver">Prata fosco</option>
-        <option value="Vermelho candy|Candy red">Vermelho candy</option>
-        <option value="Branco perolado|Pearl white">Branco perolado</option>
-      </select>
-
-      <label>Detalhes</label>
-      <select name="detalhes">
-        <option value="Capota abaixada, interior visível|Roof down, interior visible">Capota abaixada, interior visível</option>
-        <option value="Faróis acesos, leve neblina|Headlights on, slight fog">Faróis acesos, leve neblina</option>
-        <option value="Reflexo do sol nas rodas cromadas|Sunlight reflection on chrome wheels">Reflexo do sol nas rodas cromadas</option>
-        <option value="Portas abertas em estilo tesoura|Doors open in scissor style">Portas abertas em estilo tesoura</option>
-        <option value="Escape soltando leve trilha de fumaça|Exhaust emitting subtle smoke trail">Escape soltando leve trilha de fumaça</option>
+      <label>Movimento</label>
+      <select name="movimento">
+        <option value="Sem movimento, cena estática|No movement, static scene">Sem movimento</option>
+        <option value="Personagem em movimento, caminhando|Character in motion, walking">Personagem caminhando</option>
+        <option value="Carro em movimento com leve blur|Car in motion with light blur">Carro em movimento</option>
       </select>
 
       <button type="button" onclick="gerarPrompt()">Gerar Prompt</button>
@@ -122,22 +64,34 @@
       const cor = extrairValor(data.get("cor"));
       const detalhes = extrairValor(data.get("detalhes"));
       const carro = data.get("carro");
+      const lente = extrairValor(data.get("lente"));
+      const cameraDistancia = data.get("camera_distancia");
+      const acessorios = data.get("acessorios");
+      const movimento = extrairValor(data.get("movimento"));
 
       const promptPT = `🏙️ ${local.pt} em um dia ${clima.pt}. Céu ${ceu.pt}.
+Ambiente urbano limpo, com estética minimalista e contemporânea.
 
-👤 ${estilo.pt}, ${atitude.pt}.
+👤 ${estilo.pt}. Está ${atitude.pt.toLowerCase()}, transmitindo postura confiante e atitude editorial.
+Acessórios: ${acessorios || "nenhum"}.
 
-🚗 ${carro}, cor ${cor.pt}. ${detalhes.pt}.
+🚗 Modelo: ${carro}, pintado em ${cor.pt}. ${detalhes.pt}. O carro projeta uma sombra definida no chão, com destaque para os detalhes cromados refletindo a luz.
 
-📸 Estilo editorial, estética de luxo com luz natural. Perspectiva em grande angular, composição limpa.`;
+📸 A câmera está posicionada a cerca de ${cameraDistancia || "1 metro"} do chão, com lente ${lente.pt.toLowerCase()}. Cena com ${movimento.pt.toLowerCase()}.
+
+💡 Luz natural intensa com sombras marcantes. Estilo visual moderno, com contraste forte e sensação de luxo. Paleta com destaque para o contraste entre o carro, vestuário e fundo.`;
 
       const promptEN = `🏙️ ${local.en} on a ${clima.en} day. ${ceu.en} sky.
+Urban environment with clean, minimalistic and modern aesthetics.
 
-👤 ${estilo.en}, ${atitude.en}.
+👤 ${estilo.en}. ${atitude.en.charAt(0).toUpperCase() + atitude.en.slice(1)} posture conveying confidence and editorial attitude.
+Accessories: ${acessorios || "none"}.
 
-🚗 ${carro}, ${cor.en} finish. ${detalhes.en}.
+🚗 Model: ${carro}, painted in ${cor.en}. ${detalhes.en}. The car casts a sharp shadow on the ground, with chrome details reflecting the sunlight.
 
-📸 Editorial style, luxury aesthetic with natural light. Wide-angle perspective, clean composition.`;
+📸 Camera placed about ${cameraDistancia || "1 meter"} off the ground, using a ${lente.en.toLowerCase()}. Scene with ${movimento.en.toLowerCase()}.
+
+💡 Harsh natural light with strong shadows. Editorial and modern visual style, emphasizing luxury. Color palette with bold contrast between the car, clothing, and background.`;
 
       document.getElementById("output").textContent = `${promptPT}\n\n---\n\n${promptEN}`;
     }
