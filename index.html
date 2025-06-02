@@ -141,7 +141,21 @@
   <option value="Mecânico trabalhando sob carro suspenso|Mechanic working under elevated car">Mecânico trabalhando sob carro suspenso</option>
 </select>
 
-      <h2>Configurações adicionais</h2>
+      <label>Capô aberto?</label>
+<select name="capo">
+  <option value="com o capô aberto|with the hood open">Sim</option>
+  <option value="com o capô fechado|with the hood closed">Não</option>
+</select>
+
+<label>Enquadramento</label>
+<select name="enquadramento">
+  <option value="plano americano mostrando o carro e o mecânico até os joelhos|medium-long shot showing car and mechanic to the knees">Plano americano até os joelhos</option>
+  <option value="plano geral mostrando toda a cena e o ambiente|wide shot showing full scene and environment">Plano geral do ambiente</option>
+  <option value="close no motor com detalhes visíveis|close-up on the engine with visible details">Close no motor</option>
+  <option value="plano médio focando no mecânico e parte do carro|medium shot focusing on mechanic and part of the car">Plano médio no mecânico</option>
+</select>
+
+<h2>Configurações adicionais</h2>
       <label>Distância da câmera (ex: 1 metro)</label>
       <input type="text" name="camera_distancia" placeholder="Ex: 1 metro">
 
@@ -171,55 +185,67 @@
   </div>
 
   <script>
-    function gerarPrompt() {
-      const form = document.getElementById("promptForm");
-      const data = new FormData(form);
+function gerarPrompt() {
+  const form = document.getElementById("promptForm");
+  const data = new FormData(form);
 
-      function extrairValor(valorComposto) {
-        const partes = valorComposto.split('|');
-        return { pt: partes[0], en: partes[1] };
-      }
+  function extrairValor(valorComposto) {
+    const partes = valorComposto.split('|');
+    return { pt: partes[0], en: partes[1] };
+  }
 
-      const local = extrairValor(data.get("local"));
-      const clima = extrairValor(data.get("clima"));
-      const ceu = extrairValor(data.get("ceu"));
-      const estilo = extrairValor(data.get("estilo"));
-      const atitude = extrairValor(data.get("atitude"));
-      const cor = extrairValor(data.get("cor"));
-      const ambiente = extrairValor(data.get("ambiente"));
-      const carro = data.get("carro");
-      const lente = extrairValor(data.get("lente"));
-      const cameraDistancia = data.get("camera_distancia");
-      const acessorios = data.get("acessorios");
-      const movimento = extrairValor(data.get("movimento"));
+  const local = extrairValor(data.get("local"));
+  const clima = extrairValor(data.get("clima"));
+  const estilo = extrairValor(data.get("estilo"));
+  const atitude = extrairValor(data.get("atitude"));
+  const cor = extrairValor(data.get("cor"));
+  const ambiente = extrairValor(data.get("ambiente"));
+  const carro = data.get("carro");
+  const lente = extrairValor(data.get("lente"));
+  const cameraDistancia = data.get("camera_distancia");
+  const acessorios = data.get("acessorios");
+  const movimento = extrairValor(data.get("movimento"));
+  const capo = extrairValor(data.get("capo"));
+  const enquadramento = extrairValor(data.get("enquadramento"));
 
-      const promptPT = `🏙️ ${local.pt} em um dia ${clima.pt}. Céu ${ceu.pt}.
+  const promptPT = `🏙️ ${local.pt} em um dia ${clima.pt}.
 Ambiente urbano limpo, com estética minimalista e contemporânea. Contexto: ${ambiente.pt.toLowerCase()}.
 
 👤 ${estilo.pt}. Está ${atitude.pt.toLowerCase()}, transmitindo postura técnica e atitude profissional.
 Acessórios: ${acessorios || "nenhum"}.
 
-🚗 Modelo: ${carro}, pintado em ${cor.pt}. O carro projeta uma sombra definida no chão, com destaque para os detalhes cromados refletindo a luz.
+🚗 Modelo: ${carro}, pintado em ${cor.pt}. O carro projeta uma sombra definida no chão, com destaque para os detalhes cromados refletindo a luz, ${capo.pt}.
 
-📸 A câmera está posicionada a cerca de ${cameraDistancia || "1 metro"} do chão, com lente ${lente.pt.toLowerCase()}. Cena com ${movimento.pt.toLowerCase()}.
+📸 A câmera está posicionada a cerca de ${cameraDistancia || "1 metro"} do chão, com lente ${lente.pt.toLowerCase()}. Cena com ${movimento.pt.toLowerCase()}. Enquadramento: ${enquadramento.pt.toLowerCase()}.
 
 💡 Luz natural intensa com sombras marcantes. Estilo visual moderno, com contraste forte e sensação de luxo. Paleta com destaque para o contraste entre o carro, vestuário e fundo.`;
 
-      const promptEN = `🏙️ ${local.en} on a ${clima.en} day. ${ceu.en} sky.
+  const promptEN = `🏙️ ${local.en} on a ${clima.en} day.
 Urban environment with clean, minimalistic and modern aesthetics. Context: ${ambiente.en.toLowerCase()}.
 
 👤 ${estilo.en}. ${atitude.en.charAt(0).toUpperCase() + atitude.en.slice(1)} posture conveying technical focus and professional attitude.
 Accessories: ${acessorios || "none"}.
 
-🚗 Model: ${carro}, painted in ${cor.en}. The car casts a sharp shadow on the ground, with chrome details reflecting the sunlight.
+🚗 Model: ${carro}, painted in ${cor.en}. The car casts a sharp shadow on the ground, with chrome details reflecting the sunlight, ${capo.en}.
 
-📸 Camera placed about ${cameraDistancia || "1 meter"} off the ground, using a ${lente.en.toLowerCase()}. Scene with ${movimento.en.toLowerCase()}.
+📸 Camera placed about ${cameraDistancia || "1 meter"} off the ground, using a ${lente.en.toLowerCase()}. Scene with ${movimento.en.toLowerCase()}. Framing: ${enquadramento.en.toLowerCase()}.
 
 💡 Harsh natural light with strong shadows. Editorial and modern visual style, emphasizing luxury. Color palette with bold contrast between the car, clothing, and background.`;
 
-      document.getElementById("output").textContent = `${promptPT}\n\n---\n\n${promptEN}`;
-    }
-  document.getElementById("promptForm").addEventListener("change", gerarPrompt);
+  document.getElementById("output").textContent = `${promptPT}
+
+O carro deve estar bem iluminado, destacando detalhes como faróis, rodas e elementos de design, com o céu azul e nuvens fofas criando uma atmosfera serena sobre o cenário urbano.
+
+---
+
+${promptEN}
+
+The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.`;
+}
+
+document.getElementById("promptForm").addEventListener("input", function() {
+  gerarPrompt();
+});
 
 function copiarPrompt() {
   const texto = document.getElementById("output").textContent;
@@ -227,37 +253,6 @@ function copiarPrompt() {
     alert("Prompt copiado para a área de transferência!");
   });
 }
-
-    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/branco-cristal.png" },
-    { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
-    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
-    { pt: "Vermelho Sunset", en: "Sunset Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/vermelho-sunset.png" }
-  ],
-  "Volkswagen Virtus": [
-    { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/preto-ninja.png" },
-    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/cinza-platinum.png" },
-    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/branco-cristal.png" }
-  ]
-  // Adicione mais modelos aqui conforme necessário
-};
-
-|${cor.en}" ${i === 0 ? 'checked' : ''}>
-      <img src="${cor.img}" width="100"> ${cor.pt}
-    </label>
-  `).join("");
-}
-
-// Atualizar cores ao carregar e ao mudar modelo
-atualizarCores();
-
-  gerarPrompt();
-});
-});
-
-document.getElementById("promptForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  gerarPrompt();
-});
 </script>
 </body>
 </html>
