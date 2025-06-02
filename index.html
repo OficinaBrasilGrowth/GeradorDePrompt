@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt Builder do Biel</title>
+  <title>Prompt Builder - Editorial + Carro</title>
   <style>
     body {
       font-family: sans-serif;
@@ -63,18 +63,33 @@
 </head>
 <body>
   <div class="container">
-    <h1>Prompt Builder do Biel</h1>
+    <h1>Prompt Builder – Editorial de Moda + Carro</h1>
 
     <form id="promptForm">
       <h2>Cenário</h2>
-      <label>Tipo de local</label>
-      <select name="local">
-        <option value="Estacionamento no topo de prédio|Rooftop parking lot">Estacionamento no topo de prédio</option>
-        <option value="Rodovia no deserto|Desert highway">Rodovia no deserto</option>
-        <option value="Rua de luxo urbana|Luxury city street">Rua de luxo urbana</option>
-        <option value="Fundo de armazém industrial|Industrial warehouse background">Fundo de armazém industrial</option>
-        <option value="Entrada de mansão moderna|Modern villa driveway">Entrada de mansão moderna</option>
-      </select>
+<label>Tipo de local</label>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="local" value="Concessionária moderna com showroom iluminado|Modern car dealership showroom" checked>
+    <img src="/mnt/data/concessionarias-VW-1280x640.jpeg" alt="Concessionária" width="100"> Concessionária moderna
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="local" value="Oficina mecânica clássica com carros antigos|Classic repair shop with vintage cars">
+    <img src="/mnt/data/2149580532.jpg" alt="Oficina clássica" width="100"> Oficina clássica
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="local" value="Oficina industrial com elevadores hidráulicos|Industrial auto repair shop with hydraulic lifts">
+    <img src="/mnt/data/175.jpg" alt="Oficina industrial" width="100"> Oficina industrial
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="local" value="Oficina urbana com ferramentas espalhadas|Urban garage with scattered tools">
+    <img src="/mnt/data/234160.jpg" alt="Oficina urbana" width="100"> Oficina urbana
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="local" value="Mecânico trabalhando sob carro suspenso|Mechanic working under elevated car">
+    <img src="/mnt/data/2150170042.jpg" alt="Mecânico trabalhando" width="100"> Mecânico em ação
+  </label>
+</div>
 
       <label>Condição do clima</label>
       <select name="clima">
@@ -94,56 +109,110 @@
 
       <h2>Personagem</h2>
       <label>Estilo</label>
-      <select name="estilo">
-        <option value="Mulher estilosa com jeans escuro|Stylish woman in dark denim">Mulher estilosa com jeans escuro</option>
-        <option value="Homem streetwear com moletom oversized|Streetwear man in oversized hoodie">Homem streetwear com moletom oversized</option>
-        <option value="Mulher elegante com vestido de seda|Elegant woman in silk dress">Mulher elegante com vestido de seda</option>
-        <option value="Homem com terno sob medida|Man in sharp tailored suit">Homem com terno sob medida</option>
-        <option value="Modelo andrógino com roupa techwear futurista|Androgynous model in futuristic techwear">Modelo andrógino com roupa techwear futurista</option>
-      </select>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="estilo" value="Mulher estilosa com jeans escuro|Stylish woman in dark denim" checked>
+    <img src="https://cdn.midjourney.com/b40a7ec6-bff7-4071-89f4-5cfa3e9cfb26/0_1.webp" width="100"> Mulher estilosa (jeans escuro)
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="estilo" value="Homem streetwear com moletom oversized|Streetwear man in oversized hoodie">
+    <img src="https://cdn.midjourney.com/67f080d1-05b7-489b-8753-2b3c2a264c66/0_1.webp" width="100"> Streetwear masculino
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="estilo" value="Mulher elegante com vestido de seda|Elegant woman in silk dress">
+    <img src="https://cdn.midjourney.com/7ce18c5c-63b4-4b87-b1d3-2907cbba71dc/0_2.webp" width="100"> Mulher elegante
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="estilo" value="Homem com terno sob medida|Man in sharp tailored suit">
+    <img src="https://cdn.midjourney.com/c2b40188-4e9c-42a6-b70d-99c00b9e5f34/0_1.webp" width="100"> Terno sob medida
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="estilo" value="Modelo andrógino com roupa techwear futurista|Androgynous model in futuristic techwear">
+    <img src="https://cdn.midjourney.com/81aa5fc7-26a7-4cb1-9011-f0d946229a62/0_0.webp" width="100"> Techwear futurista
+  </label>
+</div>
 
       <label>Postura e atitude</label>
-      <select name="atitude">
-        <option value="caminhando com confiança, mãos nos bolsos|walking confidently, hands in pockets">Caminhando com confiança</option>
-        <option value="encostado no carro, postura casual|leaning on car, casual stance">Encostado no carro</option>
-        <option value="olhando para longe da câmera, com ar misterioso|looking away from camera, mysterious vibe">Olhando para longe</option>
-        <option value="sentado no capô, relaxado e estiloso|sitting on hood, relaxed and cool">Sentado no capô</option>
-        <option value="atravessando a cena, em movimento com desfoque|crossing the frame, mid-stride with motion blur">Atravessando a cena</option>
-      </select>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="atitude" value="caminhando com confiança, mãos nos bolsos|walking confidently, hands in pockets" checked>
+    <img src="https://cdn.midjourney.com/b64a4375-fd86-4a89-9b3a-8d62ae68715b/0_1.webp" width="100"> Caminhando com confiança
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="atitude" value="encostado no carro, postura casual|leaning on car, casual stance">
+    <img src="https://cdn.midjourney.com/282a7a46-58e0-41d6-a8df-131a674898ed/0_0.webp" width="100"> Encostado no carro
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="atitude" value="olhando para longe da câmera, com ar misterioso|looking away from camera, mysterious vibe">
+    <img src="https://cdn.midjourney.com/3a7c4793-0b44-4a9e-b0ee-90cb1e1e6349/0_0.webp" width="100"> Olhando para longe
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="atitude" value="sentado no capô, relaxado e estiloso|sitting on hood, relaxed and cool">
+    <img src="https://cdn.midjourney.com/dde2935e-2fd2-4e91-91a4-f779fa98301f/0_0.webp" width="100"> Sentado no capô
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="atitude" value="atravessando a cena, em movimento com desfoque|crossing the frame, mid-stride with motion blur">
+    <img src="https://cdn.midjourney.com/f027d22c-e74e-4e64-97f3-84f438d30869/0_0.webp" width="100"> Atravessando a cena
+  </label>
+</div>
 
       <h2>Carro</h2>
       <label>Modelo</label>
-      <input type="text" name="carro" list="carros" placeholder="Digite o modelo do carro (ex: BMW M4 Convertible)">
-      <datalist id="carros">
-        <option value="BMW M4 Convertible">
-        <option value="Porsche 911 Turbo S">
-        <option value="Mercedes-AMG GT">
-        <option value="Audi R8">
-        <option value="Lamborghini Huracán">
-        <option value="Ferrari 488 Spider">
-        <option value="Tesla Roadster">
-        <option value="McLaren 720S">
-        <option value="Chevrolet Corvette Z06">
-        <option value="Aston Martin Vantage">
-      </datalist>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="carro" value="Volkswagen Nivus" checked>
+    <img src="https://cdn.motor1.com/images/mgl/LJvMW/s1/volkswagen-nivus-highline-200-tsi-2022.webp" width="100"> VW Nivus
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="carro" value="Volkswagen Virtus">
+    <img src="https://cdn.motor1.com/images/mgl/2y66k/s1/2023-volkswagen-virtus-1.0-tsi.webp" width="100"> VW Virtus
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="carro" value="Volkswagen Amarok">
+    <img src="https://cdn.motor1.com/images/mgl/ZqR0j/s1/2023-vw-amarok-front-view.webp" width="100"> VW Amarok
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="carro" value="Volkswagen Golf">
+    <img src="https://cdn.motor1.com/images/mgl/y9kKX/s1/2021-volkswagen-golf-gti.webp" width="100"> VW Golf
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="carro" value="Volkswagen T-Cross">
+    <img src="https://cdn.motor1.com/images/mgl/zZJkY/s1/vw-t-cross-2024-oficial-1.webp" width="100"> VW T-Cross
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="carro" value="Volkswagen Up TSI">
+    <img src="https://cdn.motor1.com/images/mgl/LnR0Z/s1/volkswagen-up-2021.jpg" width="100"> VW Up TSI
+  </label>
+</div>
 
       <label>Cor</label>
-      <select name="cor">
-        <option value="roxo metálico|metallic purple">Roxo metálico</option>
-        <option value="preto brilhante|glossy black">Preto brilhante</option>
-        <option value="prata fosco|matte silver">Prata fosco</option>
-        <option value="vermelho candy|candy red">Vermelho candy</option>
-        <option value="branco perolado|pearl white">Branco perolado</option>
-      </select>
+<div id="cores-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <!-- As opções de cores serão inseridas dinamicamente via JavaScript -->
+</div>
 
       <label>Detalhes</label>
-      <select name="detalhes">
-        <option value="Capota abaixada, interior visível|Roof down, interior visible">Capota abaixada, interior visível</option>
-        <option value="Faróis acesos com leve névoa|Headlights on, slight fog">Faróis acesos com leve névoa</option>
-        <option value="Reflexo do sol nas rodas cromadas|Sunlight reflection on chrome wheels">Reflexo do sol nas rodas</option>
-        <option value="Portas abertas estilo tesoura|Doors open in scissor style">Portas abertas estilo tesoura</option>
-        <option value="Escape soltando leve fumaça|Exhaust emitting subtle smoke trail">Escape soltando leve fumaça</option>
-      </select>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="detalhes" value="Capota abaixada, interior visível|Roof down, interior visible" checked>
+    <img src="https://cdn.midjourney.com/bf33bcd0-0c8e-4971-9f90-13c61ff67f7a/0_2.webp" width="100"> Capota abaixada
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="detalhes" value="Faróis acesos com leve névoa|Headlights on, slight fog">
+    <img src="https://cdn.midjourney.com/59374c16-6e94-4cd4-963c-3f48e56f1760/0_0.webp" width="100"> Faróis acesos com névoa
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="detalhes" value="Reflexo do sol nas rodas cromadas|Sunlight reflection on chrome wheels">
+    <img src="https://cdn.midjourney.com/7659633e-46a6-4e9e-88b5-95b8894d6e20/0_1.webp" width="100"> Reflexo nas rodas
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="detalhes" value="Portas abertas estilo tesoura|Doors open in scissor style">
+    <img src="https://cdn.midjourney.com/0c0eaf63-f89b-4c65-b7a0-d5a87c26d4ff/0_0.webp" width="100"> Portas tesoura
+  </label>
+  <label style="display: flex; align-items: center; gap: 8px;">
+    <input type="radio" name="detalhes" value="Escape soltando leve fumaça|Exhaust emitting subtle smoke trail">
+    <img src="https://cdn.midjourney.com/3b0cb06e-1e61-48cc-80fc-2d85cf91b507/0_0.webp" width="100"> Escape com fumaça
+  </label>
+</div>
 
       <h2>Configurações adicionais</h2>
       <label>Distância da câmera (ex: 1 metro)</label>
@@ -171,6 +240,7 @@
 
     <h2>Prompt Gerado</h2>
     <pre id="output"></pre>
+<button onclick="copiarPrompt()" style="margin-top: 10px;">📋 Copiar Prompt</button>
   </div>
 
   <script>
@@ -222,6 +292,82 @@ Accessories: ${acessorios || "none"}.
 
       document.getElementById("output").textContent = `${promptPT}\n\n---\n\n${promptEN}`;
     }
-  </script>
+  document.getElementById("promptForm").addEventListener("change", gerarPrompt);
+
+function copiarPrompt() {
+  const texto = document.getElementById("output").textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    alert("Prompt copiado para a área de transferência!");
+  });
+}
+const coresVW = {
+  "Volkswagen Nivus": [
+    { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/preto-ninja.png" },
+    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/branco-cristal.png" },
+    { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
+    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
+    { pt: "Vermelho Sunset", en: "Sunset Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/vermelho-sunset.png" }
+  ],
+  "Volkswagen Virtus": [
+    { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/preto-ninja.png" },
+    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/cinza-platinum.png" },
+    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/branco-cristal.png" }
+  ],
+  "Volkswagen Amarok": [
+    { pt: "Branco Puro", en: "Pure White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/amarok/amarok-v6-extreme/colors/branco-puro.png" },
+    { pt: "Cinza Indium", en: "Indium Grey", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/amarok/amarok-v6-extreme/colors/cinza-indium.png" },
+    { pt: "Preto Mystic", en: "Mystic Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/amarok/amarok-v6-extreme/colors/preto-mystic.png" }
+  ],
+  "Volkswagen Golf": [
+    { pt: "Vermelho Tornado", en: "Tornado Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/golf/colors/vermelho-tornado.png" },
+    { pt: "Branco Puro", en: "Pure White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/golf/colors/branco-puro.png" },
+    { pt: "Cinza Urano", en: "Uranus Grey", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/golf/colors/cinza-urano.png" }
+  ],
+  "Volkswagen T-Cross": [
+    { pt: "Laranja Energetic", en: "Energetic Orange", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/t-cross/t-cross-highline/colors/laranja-energetic.png" },
+    { pt: "Prata Sargas", en: "Sargas Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/t-cross/t-cross-highline/colors/prata-sargas.png" },
+    { pt: "Branco Puro", en: "Pure White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/t-cross/t-cross-highline/colors/branco-puro.png" }
+  ],
+  "Volkswagen Up TSI": [
+    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/branco-cristal.png" },
+    { pt: "Vermelho Flash", en: "Flash Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/vermelho-flash.png" },
+    { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/prata-sirius.png" }
+  ]
+};,
+    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/branco-cristal.png" },
+    { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
+    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
+    { pt: "Vermelho Sunset", en: "Sunset Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/vermelho-sunset.png" }
+  ],
+  "Volkswagen Virtus": [
+    { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/preto-ninja.png" },
+    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/cinza-platinum.png" },
+    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/branco-cristal.png" }
+  ]
+  // Adicione mais modelos aqui conforme necessário
+};
+
+function atualizarCores() {
+  const carroSelecionado = document.querySelector('input[name="carro"]:checked')?.value;
+  const container = document.getElementById("cores-container");
+  const cores = coresVW[carroSelecionado] || [];
+  container.innerHTML = cores.map((cor, i) => `
+    <label style="display: flex; align-items: center; gap: 8px;">
+      <input type="radio" name="cor" value="${cor.pt}|${cor.en}" ${i === 0 ? 'checked' : ''}>
+      <img src="${cor.img}" width="100"> ${cor.pt}
+    </label>
+  `).join("");
+}
+
+// Atualizar cores ao carregar e ao mudar modelo
+atualizarCores();
+document.querySelectorAll('input[name="carro"]').forEach(radio => {
+  radio.addEventListener("change", () => {
+    atualizarCores();
+    gerarPrompt();
+  });
+});
+
+</script>
 </body>
 </html>
