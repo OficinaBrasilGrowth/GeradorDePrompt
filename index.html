@@ -117,9 +117,20 @@
       
 
       <label>Cor</label>
-<div id="cores-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-  <!-- As opções de cores serão inseridas dinamicamente via JavaScript -->
-</div>
+<select name="cor">
+  <option value="Preto Ninja|Ninja Black">Preto Ninja</option>
+  <option value="Branco Cristal|Crystal White">Branco Cristal</option>
+  <option value="Prata Sirius|Sirius Silver">Prata Sirius</option>
+  <option value="Cinza Platinum|Platinum Gray">Cinza Platinum</option>
+  <option value="Vermelho Sunset|Sunset Red">Vermelho Sunset</option>
+  <option value="Preto Mystic|Mystic Black">Preto Mystic</option>
+  <option value="Vermelho Tornado|Tornado Red">Vermelho Tornado</option>
+  <option value="Laranja Energetic|Energetic Orange">Laranja Energetic</option>
+  <option value="Prata Sargas|Sargas Silver">Prata Sargas</option>
+  <option value="Cinza Indium|Indium Grey">Cinza Indium</option>
+  <option value="Cinza Urano|Uranus Grey">Cinza Urano</option>
+  <option value="Vermelho Flash|Flash Red">Vermelho Flash</option>
+</select>
 
       <label>Detalhes</label>
 <select name="local">
@@ -216,39 +227,7 @@ function copiarPrompt() {
     alert("Prompt copiado para a área de transferência!");
   });
 }
-const coresVW = {
-  "Volkswagen Nivus": [
-    { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/preto-ninja.png" },
-    { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
-    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
-    { pt: "Vermelho Sunset", en: "Sunset Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/vermelho-sunset.png" }
-  ],
-  "Volkswagen Virtus": [
-    { pt: "Preto Ninja", en: "Ninja Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/preto-ninja.png" },
-    { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/cinza-platinum.png" },
-    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/virtus/virtus-highline/colors/branco-cristal.png" }
-  ],
-  "Volkswagen Amarok": [
-    { pt: "Branco Puro", en: "Pure White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/amarok/amarok-v6-extreme/colors/branco-puro.png" },
-    { pt: "Cinza Indium", en: "Indium Grey", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/amarok/amarok-v6-extreme/colors/cinza-indium.png" },
-    { pt: "Preto Mystic", en: "Mystic Black", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/amarok/amarok-v6-extreme/colors/preto-mystic.png" }
-  ],
-  "Volkswagen Golf": [
-    { pt: "Vermelho Tornado", en: "Tornado Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/golf/colors/vermelho-tornado.png" },
-    { pt: "Branco Puro", en: "Pure White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/golf/colors/branco-puro.png" },
-    { pt: "Cinza Urano", en: "Uranus Grey", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/golf/colors/cinza-urano.png" }
-  ],
-  "Volkswagen T-Cross": [
-    { pt: "Laranja Energetic", en: "Energetic Orange", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/t-cross/t-cross-highline/colors/laranja-energetic.png" },
-    { pt: "Prata Sargas", en: "Sargas Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/t-cross/t-cross-highline/colors/prata-sargas.png" },
-    { pt: "Branco Puro", en: "Pure White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/t-cross/t-cross-highline/colors/branco-puro.png" }
-  ],
-  "Volkswagen Up TSI": [
-    { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/branco-cristal.png" },
-    { pt: "Vermelho Flash", en: "Flash Red", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/vermelho-flash.png" },
-    { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/up/colors/prata-sirius.png" }
-  ]
-};
+
     { pt: "Branco Cristal", en: "Crystal White", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/branco-cristal.png" },
     { pt: "Prata Sirius", en: "Sirius Silver", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/prata-sirius.png" },
     { pt: "Cinza Platinum", en: "Platinum Gray", img: "https://www.vw.com.br/content/dam/vw-ngw/vw_pkw/importers/br/models/nivus/nivus-highline-23/colors/cinza-platinum.png" },
@@ -262,13 +241,7 @@ const coresVW = {
   // Adicione mais modelos aqui conforme necessário
 };
 
-function atualizarCores() {
-  const carroSelecionado = document.querySelector('select[name="carro"]')?.value;
-  const container = document.getElementById("cores-container");
-  const cores = coresVW[carroSelecionado] || [];
-  container.innerHTML = cores.map((cor, i) => `
-    <label style="display: flex; align-items: center; gap: 8px;">
-      <input type="radio" name="cor" value="${cor.pt}|${cor.en}" ${i === 0 ? 'checked' : ''}>
+|${cor.en}" ${i === 0 ? 'checked' : ''}>
       <img src="${cor.img}" width="100"> ${cor.pt}
     </label>
   `).join("");
@@ -276,12 +249,15 @@ function atualizarCores() {
 
 // Atualizar cores ao carregar e ao mudar modelo
 atualizarCores();
-document.querySelector('select[name="carro"]').addEventListener("change", () => {
-  atualizarCores();
+
   gerarPrompt();
 });
 });
 
+document.getElementById("promptForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  gerarPrompt();
+});
 </script>
 </body>
 </html>
