@@ -1,258 +1,259 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt Builder do Biel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Generator Volkswagen - Imagen 3</title>
   <style>
+    :root {
+      --primary-color: #007bff;
+      --secondary-color: #0056b3;
+      --highlight: #cce5ff;
+      --border-color: #d0d7de;
+      --section-bg: #eaf4ff;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      padding: 1rem;
+      color: #333;
     }
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 800px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      margin-top: 20px;
-    }
-    select, input[type=text], textarea, datalist {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 16px;
-      border: 1px solid #ccc;
+    h1 { color: var(--primary-color); text-align: center; }
+    .form-section {
+      background-color: #fff;
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      box-sizing: border-box;
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: var(--section-bg);
+      border-radius: 6px;
+    }
+    .form-group h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 1rem;
+      color: #444;
+    }
+    select, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .button-group {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
     }
     button {
-      padding: 12px 20px;
-      background: #5a2fbe;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: var(--primary-color);
       color: white;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    button:hover {
-      background: #431b94;
-    }
-    pre {
-      background: #272822;
-      color: #f8f8f2;
-      padding: 15px;
+    button:hover { background-color: var(--secondary-color); }
+    #copyBtn { background-color: #28a745; }
+    #copyBtn:hover { background-color: #1e7e34; }
+    #resetBtn { background-color: #dc3545; }
+    #resetBtn:hover { background-color: #c82333; }
+    #output {
+      background-color: #f0f8ff;
+      border: 2px solid var(--primary-color);
       border-radius: 8px;
-      overflow: auto;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      max-width: 700px;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    #promptText {
+      width: 100%;
+      border: none;
+      resize: vertical;
+      font-size: 1rem;
+      font-family: inherit;
+      background-color: transparent;
+      outline: none;
+      color: #212529;
     }
     @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      .container {
-        padding: 15px;
-      }
+      .button-group { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Prompt Builder do Biel</h1>
-
-    <form id="promptForm">
-      <h2>Carro</h2>
-<label>Modelo</label>
-<select name="carro">
-  <option value="Volkswagen Nivus">Volkswagen Nivus</option>
-  <option value="Volkswagen Virtus">Volkswagen Virtus</option>
-  <option value="Volkswagen Amarok">Volkswagen Amarok</option>
-  <option value="Volkswagen Golf">Volkswagen Golf</option>
-  <option value="Volkswagen T-Cross">Volkswagen T-Cross</option>
-  <option value="Volkswagen Up TSI">Volkswagen Up TSI</option>
-</select>
-
-      <label>Iluminação</label>
-<select name="clima">
-  <option value="ensolarado e limpo com céu azul|sunny and clear with blue sky">Ensolarado e limpo com céu azul</option>
-  <option value="nublado com luz difusa|overcast with diffused light">Nublado com luz difusa</option>
-  <option value="luz dourada do fim de tarde com céu gradiente|golden hour with gradient sky">Luz dourada do fim de tarde</option>
-  <option value="noite com céu estrelado e luzes da cidade|night with stars and city lights">Noite com céu estrelado</option>
-</select>
-
-      <h2>Personagem</h2>
-      <label>Estilo</label>
-<select name="estilo">
-  <option value="Mecânico negro de porte atlético|Black male mechanic with athletic build">Mecânico negro de porte atlético</option>
-  <option value="Mecânico asiático magro e preciso|Slim and precise Asian male mechanic">Mecânico asiático magro e preciso</option>
-  <option value="Mecânico branco de estatura média|White male mechanic with average build">Mecânico branco de estatura média</option>
-  <option value="Mecânico indígena com tranças|Indigenous male mechanic with braids">Mecânico indígena com tranças</option>
-  <option value="Mecânico ruivo com barba e tatuagens|Red-haired male mechanic with beard and tattoos">Mecânico ruivo com barba e tatuagens</option>
-</select>
-
-      <label>Postura e atitude</label>
-<select name="atitude">
-  <option value="consertando motor com foco e firmeza|repairing engine with focus and determination">Consertando motor com foco e firmeza</option>
-  <option value="segurando chave inglesa de forma confiante|confidently holding a wrench">Segurando chave inglesa de forma confiante</option>
-  <option value="ajoelhado ao lado do carro examinando a roda|kneeling next to the car inspecting the wheel">Ajoelhado ao lado do carro</option>
-  <option value="em pé, limpando as mãos com pano|standing, cleaning hands with a rag">Limpando as mãos com pano</option>
-  <option value="olhando para o capô aberto com expressão séria|looking at the open hood with a serious expression">Olhando para o capô com expressão séria</option>
-</select>
-
-<label>Ambiente de trabalho</label>
-<select name="ambiente">
-  <option value="box de manutenção com piso sujo de graxa|maintenance bay with greasy floor">Box de manutenção com piso sujo de graxa</option>
-  <option value="elevador hidráulico levantando o carro|hydraulic lift raising the car">Elevador hidráulico levantando o carro</option>
-  <option value="oficina organizada com painéis de ferramentas|organized garage with tool panels">Oficina organizada com painéis de ferramentas</option>
-  <option value="pátio externo com carros alinhados para revisão|outdoor lot with cars lined up for inspection">Pátio externo com carros alinhados para revisão</option>
-  <option value="área interna com iluminação fluorescente e chão de concreto|indoor area with fluorescent lights and concrete floor">Área interna com iluminação fluorescente e chão de concreto</option>
-</select>
-
-<h2>Carro</h2>
-      
-
-      <label>Cor</label>
-<select name="cor">
-  <option value="Preto Ninja|Ninja Black">Preto Ninja</option>
-  <option value="Branco Cristal|Crystal White">Branco Cristal</option>
-  <option value="Prata Sirius|Sirius Silver">Prata Sirius</option>
-  <option value="Cinza Platinum|Platinum Gray">Cinza Platinum</option>
-  <option value="Vermelho Sunset|Sunset Red">Vermelho Sunset</option>
-  <option value="Preto Mystic|Mystic Black">Preto Mystic</option>
-  <option value="Vermelho Tornado|Tornado Red">Vermelho Tornado</option>
-  <option value="Laranja Energetic|Energetic Orange">Laranja Energetic</option>
-  <option value="Prata Sargas|Sargas Silver">Prata Sargas</option>
-  <option value="Cinza Indium|Indium Grey">Cinza Indium</option>
-  <option value="Cinza Urano|Uranus Grey">Cinza Urano</option>
-  <option value="Vermelho Flash|Flash Red">Vermelho Flash</option>
-</select>
-
-      <label>Detalhes</label>
-<select name="local">
-  <option value="Concessionária moderna com showroom iluminado|Modern car dealership showroom">Concessionária moderna com showroom iluminado</option>
-  <option value="Oficina mecânica clássica com carros antigos|Classic repair shop with vintage cars">Oficina mecânica clássica com carros antigos</option>
-  <option value="Oficina industrial com elevadores hidráulicos|Industrial auto repair shop with hydraulic lifts">Oficina industrial com elevadores hidráulicos</option>
-  <option value="Oficina urbana com ferramentas espalhadas|Urban garage with scattered tools">Oficina urbana com ferramentas espalhadas</option>
-  <option value="Mecânico trabalhando sob carro suspenso|Mechanic working under elevated car">Mecânico trabalhando sob carro suspenso</option>
-</select>
-
-      <label>Capô aberto?</label>
-<select name="capo">
-  <option value="com o capô aberto|with the hood open">Sim</option>
-  <option value="com o capô fechado|with the hood closed">Não</option>
-</select>
-
-<label>Enquadramento</label>
-<select name="enquadramento">
-  <option value="plano americano mostrando o carro e o mecânico até os joelhos|medium-long shot showing car and mechanic to the knees">Plano americano até os joelhos</option>
-  <option value="plano geral mostrando toda a cena e o ambiente|wide shot showing full scene and environment">Plano geral do ambiente</option>
-  <option value="close no motor com detalhes visíveis|close-up on the engine with visible details">Close no motor</option>
-  <option value="plano médio focando no mecânico e parte do carro|medium shot focusing on mechanic and part of the car">Plano médio no mecânico</option>
-</select>
-
-<h2>Configurações adicionais</h2>
-      <label>Distância da câmera (ex: 1 metro)</label>
-      <input type="text" name="camera_distancia" placeholder="Ex: 1 metro">
-
-      <label>Tipo de lente</label>
-      <select name="lente">
-        <option value="Grande angular 24mm|Wide-angle 24mm">Grande angular 24mm</option>
-        <option value="Lente padrão 35mm|Standard 35mm lens">Lente padrão 35mm</option>
-        <option value="Teleobjetiva 85mm|Telephoto 85mm lens">Teleobjetiva 85mm</option>
+  <h1>Gerador de Prompt - Imagen 3</h1>
+  <div class="form-section">
+    <div class="form-group">
+      <h2>Informações do Carro</h2>
+      <label for="carroSimples">Escolha o carro</label>
+      <select id="carroSimples">
+        <option value="">---</option>
+        <option value="Volkswagen Nivus">Volkswagen Nivus</option>
+        <option value="Volkswagen Amarok">Volkswagen Amarok</option>
+        <option value="Volkswagen Virtus">Volkswagen Virtus</option>
+        <option value="Volkswagen T-Cross">Volkswagen T-Cross</option>
       </select>
-
-      <label>Acessórios do personagem</label>
-      <input type="text" name="acessorios" placeholder="Ex: Óculos escuros, bolsa tiracolo">
-
-      <label>Movimento</label>
-      <select name="movimento">
-        <option value="Sem movimento, cena estática|No movement, static scene">Sem movimento</option>
-        <option value="Personagem em movimento, caminhando|Character in motion, walking">Personagem caminhando</option>
-        <option value="Carro em movimento com leve blur|Car in motion with light blur">Carro em movimento</option>
+      <label for="cor">Cor do carro</label>
+      <select id="cor">
+        <option value="white">Branco</option>
+        <option value="black">Preto</option>
+        <option value="blue">Azul</option>
+        <option value="gray">Cinza</option>
+        <option value="orange">Laranja</option>
+        <option value="red">Vermelho</option>
       </select>
-
-      <button type="button" onclick="gerarPrompt()">Gerar Prompt</button>
-    </form>
-
-    <h2>Prompt Gerado</h2>
-    <pre id="output"></pre>
-<button onclick="copiarPrompt()" style="margin-top: 10px;">📋 Copiar Prompt</button>
+    </div>
+    <div class="form-group">
+      <h2>Cenário e Detalhes</h2>
+      <label for="ambiente">Ambiente</label>
+      <select id="ambiente">
+        <option value="urban alleyway">Beco urbano</option>
+        <option value="automotive workshop">Oficina mecânica</option>
+        <option value="car dealership interior">Interior de concessionária</option>
+        <option value="garage with tools">Garagem com ferramentas</option>
+        <option value="street next to a garage">Rua ao lado de oficina</option>
+        <option value="industrial auto bay">Área industrial automotiva</option>
+      </select>
+      <label for="capo">Capô aberto</label>
+      <select id="capo">
+        <option value="">Não</option>
+        <option value="with the hood open">Sim</option>
+      </select>
+      <label for="desfoque">Fundo desfocado</label>
+      <select id="desfoque">
+        <option value="">Não</option>
+        <option value="blur">Sim</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <h2>Enquadramento e Lente</h2>
+      <label for="enquadramento">Enquadramento</label>
+      <select id="enquadramento">
+        <option value="medium shot">Médio</option>
+        <option value="wide shot">Aberto</option>
+        <option value="3/4 front view">Frontal 3/4</option>
+      </select>
+      <label for="lente">Lente</label>
+      <select id="lente">
+        <option value="24mm at 1 meter">24mm (1m)</option>
+        <option value="35mm at 2 meters">35mm (2m)</option>
+        <option value="35mm at 3 meters">35mm (3m)</option>
+      </select>
+    </div>
+    <div class="button-group">
+      <button onclick="gerarPrompt()">Gerar Prompt</button>
+      <button onclick="gerarAleatorio()">Prompt Aleatório</button>
+    </div>
   </div>
+  <div id="output" style="display:none">
+    <textarea id="promptText" rows="12"></textarea>
+  </div>
+  <div class="button-group" style="justify-content: center;">
+    <button id="copyBtn" onclick="copiarPrompt()">📋 Copiar Prompt</button>
+    <button id="resetBtn" onclick="resetForm()">🔄 Novo Prompt</button>
+  </div>
+<script>
+  function gerarPrompt() {
+    const ambiente = document.getElementById('ambiente').value;
+    const carro = document.getElementById('carroSimples').value || 'Volkswagen Nivus';
+    const cor = document.getElementById('cor').value;
+    const capo = document.getElementById('capo').value;
+    const desfoque = document.getElementById('desfoque').value;
+    const enquadramento = document.getElementById('enquadramento').value;
+    const lente = document.getElementById('lente').value;
+    const personagens = [
+      "Brazilian male mechanic wearing a dark blue jumpsuit, working under the hood of a car",
+      "Brazilian mechanic in a dark blue uniform, tightening bolts on the engine",
+      "Brazilian mechanic with sturdy build in dark blue overalls, inspecting vehicle components",
+      "Professional Brazilian mechanic in dark blue jumpsuit using diagnostic tools near the vehicle",
+      "Young Brazilian mechanic in dark blue attire checking fluid levels while leaning over the engine"
+    ];
+    const personagemAleatorio = personagens[Math.floor(Math.random() * personagens.length)];
+    let prompt = `Scene: ${ambiente}.
+Character: ${personagemAleatorio}.
+Car: ${carro}, color: ${cor} ${capo}, without license plate.
+Camera: ${lente}, framing: ${enquadramento}.
+Visual style: editorial, photorealistic.`;
+    prompt += `
 
-  <script>
-function gerarPrompt() {
-  const form = document.getElementById("promptForm");
-  const data = new FormData(form);
-
-  function extrairValor(valorComposto) {
-    const partes = valorComposto.split('|');
-    return { pt: partes[0], en: partes[1] };
+The mechanic should be actively working on the car, in a realistic and professional setting with visible tools and workshop elements. The image must look like a high-quality photograph, not an illustration or digital painting.`;
+    if (desfoque) prompt += ` The background should be heavily blurred with a strong depth of field effect, ensuring the mechanic and the car are the clear focal point of the image.`;
+    prompt += ` The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.`;
+    document.getElementById('output').style.display = 'block';
+    document.getElementById('promptText').value = prompt;
   }
 
-  const local = extrairValor(data.get("local"));
-  const clima = extrairValor(data.get("clima"));
-  const estilo = extrairValor(data.get("estilo"));
-  const atitude = extrairValor(data.get("atitude"));
-  const cor = extrairValor(data.get("cor"));
-  const ambiente = extrairValor(data.get("ambiente"));
-  const carro = data.get("carro");
-  const lente = extrairValor(data.get("lente"));
-  const cameraDistancia = data.get("camera_distancia");
-  const acessorios = data.get("acessorios");
-  const movimento = extrairValor(data.get("movimento"));
-  const capo = extrairValor(data.get("capo"));
-  const enquadramento = extrairValor(data.get("enquadramento"));
+  function gerarAleatorio() {
+    const ambientes = ["urban alleyway", "automotive workshop", "car dealership interior", "garage with tools", "street next to a garage", "industrial auto bay"];
+    const cores = ["white", "black", "blue", "gray", "orange", "red"];
+    const enquadramentos = ["medium shot", "wide shot", "3/4 front view"];
+    const lentes = ["24mm at 1 meter", "35mm at 2 meters", "35mm at 3 meters"];
+    const personagens = [
+      "Brazilian male mechanic wearing a dark blue jumpsuit, working under the hood of a car",
+      "Brazilian mechanic in a dark blue uniform, tightening bolts on the engine",
+      "Brazilian mechanic with sturdy build in dark blue overalls, inspecting vehicle components",
+      "Professional Brazilian mechanic in dark blue jumpsuit using diagnostic tools near the vehicle",
+      "Young Brazilian mechanic in dark blue attire checking fluid levels while leaning over the engine"
+    ];
+    const ambiente = ambientes[Math.floor(Math.random() * ambientes.length)];
+    const carro = document.getElementById('carroSimples').value || 'Volkswagen Nivus';
+    const cor = cores[Math.floor(Math.random() * cores.length)];
+    const capo = Math.random() < 0.5 ? 'with the hood open' : '';
+    const desfoque = Math.random() < 0.5;
+    const enquadramento = enquadramentos[Math.floor(Math.random() * enquadramentos.length)];
+    const lente = lentes[Math.floor(Math.random() * lentes.length)];
+    const personagem = personagens[Math.floor(Math.random() * personagens.length)];
+    let prompt = `Scene: ${ambiente}.
+Character: ${personagem}.
+Car: ${carro}, color: ${cor} ${capo}, without license plate.
+Camera: ${lente}, framing: ${enquadramento}.
+Visual style: editorial, photorealistic.`;
+    prompt += `
 
-  const promptPT = `🏙️ ${local.pt} em um dia ${clima.pt}.
-Ambiente urbano limpo, com estética minimalista e contemporânea. Contexto: ${ambiente.pt.toLowerCase()}.
+The mechanic should be actively working on the car, in a realistic and professional setting with visible tools and workshop elements. The image must look like a high-quality photograph, not an illustration or digital painting.`;
+    if (desfoque) prompt += ` The background should be heavily blurred with a strong depth of field effect, ensuring the mechanic and the car are the clear focal point of the image.`;
+    prompt += ` The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.`;
+    document.getElementById('output').style.display = 'block';
+    document.getElementById('promptText').value = prompt;
+  }
 
-👤 ${estilo.pt}. Está ${atitude.pt.toLowerCase()}, transmitindo postura técnica e atitude profissional.
-Acessórios: ${acessorios || "nenhum"}.
+  function copiarPrompt() {
+    const output = document.getElementById('promptText').value;
+    navigator.clipboard.writeText(output).then(() => {
+      alert('Prompt copiado com sucesso!');
+    });
+  }
 
-🚗 Modelo: ${carro}, pintado em ${cor.pt}. O carro projeta uma sombra definida no chão, com destaque para os detalhes cromados refletindo a luz, ${capo.pt}.
-
-📸 A câmera está posicionada a cerca de ${cameraDistancia || "1 metro"} do chão, com lente ${lente.pt.toLowerCase()}. Cena com ${movimento.pt.toLowerCase()}. Enquadramento: ${enquadramento.pt.toLowerCase()}.
-
-💡 Luz natural intensa com sombras marcantes. Estilo visual moderno, com contraste forte e sensação de luxo. Paleta com destaque para o contraste entre o carro, vestuário e fundo.`;
-
-  const promptEN = `🏙️ ${local.en} on a ${clima.en} day.
-Urban environment with clean, minimalistic and modern aesthetics. Context: ${ambiente.en.toLowerCase()}.
-
-👤 ${estilo.en}. ${atitude.en.charAt(0).toUpperCase() + atitude.en.slice(1)} posture conveying technical focus and professional attitude.
-Accessories: ${acessorios || "none"}.
-
-🚗 Model: ${carro}, painted in ${cor.en}. The car casts a sharp shadow on the ground, with chrome details reflecting the sunlight, ${capo.en}.
-
-📸 Camera placed about ${cameraDistancia || "1 meter"} off the ground, using a ${lente.en.toLowerCase()}. Scene with ${movimento.en.toLowerCase()}. Framing: ${enquadramento.en.toLowerCase()}.
-
-💡 Harsh natural light with strong shadows. Editorial and modern visual style, emphasizing luxury. Color palette with bold contrast between the car, clothing, and background.`;
-
-  document.getElementById("output").textContent = `${promptPT}
-
-O carro deve estar bem iluminado, destacando detalhes como faróis, rodas e elementos de design, com o céu azul e nuvens fofas criando uma atmosfera serena sobre o cenário urbano.
-
----
-
-${promptEN}
-
-The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.`;
-}
-
-document.getElementById("promptForm").addEventListener("input", function() {
-  gerarPrompt();
-});
-
-function copiarPrompt() {
-  const texto = document.getElementById("output").textContent;
-  navigator.clipboard.writeText(texto).then(() => {
-    alert("Prompt copiado para a área de transferência!");
-  });
-}
+  function resetForm() {
+    document.getElementById('output').style.display = 'none';
+    document.getElementById('promptText').value = '';
+    document.querySelectorAll('select').forEach(select => select.value = '');
+  }
 </script>
 </body>
 </html>
