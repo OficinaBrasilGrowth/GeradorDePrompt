@@ -38,16 +38,16 @@
       box-shadow: var(--shadow);
     }
     legend {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  padding: 0 0.5rem;
-  background: #fff;
-  display: inline-block;
-  border-radius: 6px;
-  position: relative;
-  z-index: 1;
-}
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      padding: 0 0.5rem;
+      background: #fff;
+      display: inline-block;
+      border-radius: 6px;
+      position: relative;
+      z-index: 1;
+    }
     label {
       font-weight: 600;
       margin-top: 1rem;
@@ -95,11 +95,6 @@
       margin-bottom: 1rem;
       font-family: monospace;
     }
-    .snackbar {
-      background: var(--accent);
-      color: #000;
-      font-weight: bold;
-    }
     small {
       display: block;
       color: #555;
@@ -107,8 +102,6 @@
       margin-bottom: 0.5rem;
       font-size: 0.85em;
     }
-      
-    
   </style>
 </head>
 <body>
@@ -117,7 +110,6 @@
   <form onsubmit="event.preventDefault(); gerarPrompt();">
     <fieldset>
       <legend>Informações do Veículo</legend>
-      
       <label for="montadora">Montadora:</label>
       <select id="montadora" onchange="atualizarModelos()">
         <option value="">Selecione a montadora</option>
@@ -132,7 +124,7 @@
         <option value="KIA">KIA</option>
       </select>
       <label for="carroSimples">Modelo:</label>
-      <select id="carroSimples">
+      <select id="carroSimples" disabled>
         <option value="">Selecione o modelo</option>
       </select>
       <label for="cor">Cor:</label>
@@ -163,8 +155,6 @@
     </fieldset>
 
     <fieldset>
-      
-
       <label for="horaDia">Hora do Dia:</label>
       <select id="horaDia">
         <option value="">Selecione a hora do dia</option>
@@ -174,7 +164,6 @@
         <option value="in the evening">Fim de tarde</option>
         <option value="at night">Noite</option>
       </select>
-
       <label for="tipoEstrada">Tipo de Estrada:</label>
       <select id="tipoEstrada">
         <option value="">Selecione o tipo</option>
@@ -183,7 +172,6 @@
         <option value="on a wet road">Pista molhada</option>
         <option value="on a busy avenue">Avenida movimentada</option>
       </select>
-
       <label for="ambiente">Ambiente:</label>
       <select id="ambiente">
         <option value="">Selecione o ambiente</option>
@@ -197,14 +185,12 @@
         <option value="road with motion blur">Cena de carro em movimento</option>
         <option value="commercial parking lot">Estacionamento comercial</option>
       </select>
-
       <label for="desfoque">Fundo desfocado:</label>
       <select id="desfoque">
         <option value="">Selecione</option>
         <option value="blur">Sim</option>
         <option value="none">Não</option>
       </select>
-
       <label for="enquadramento">Enquadramento:</label>
       <select id="enquadramento">
         <option value="">Selecione</option>
@@ -212,7 +198,6 @@
         <option value="wide shot">Aberto</option>
         <option value="3/4 front view">Frontal 3/4</option>
       </select>
-
       <label for="lente">Lente:</label>
       <select id="lente">
         <option value="">Selecione</option>
@@ -220,7 +205,6 @@
         <option value="35mm at 2 meters">35mm (2m)</option>
         <option value="35mm at 3 meters">35mm (3m)</option>
       </select>
-
       <label for="removerMecanico">Remover mecânico da imagem:</label>
       <select id="removerMecanico">
         <option value="">Selecione</option>
@@ -228,168 +212,164 @@
         <option value="yes">Sim</option>
       </select>
     </fieldset>
+  </form>
 
-   
-</form>
-
-  <!-- Área de exibição do prompt gerado -->
-  
   <div id="output" style="display:none;">
-    <div id="preview" style="margin-bottom:1rem; background:#f0f0f0; padding:1rem; border-radius:8px; font-family:monospace; font-size:0.9em; color:#333;"></div>
+    <div id="preview"></div>
     <h2>Prompt Gerado</h2>
     <textarea id="promptText" rows="10" cols="100"></textarea>
-    <button onclick="copiarPrompt()">Copiar Prompt</button>
-    <button onclick="resetForm()">Novo Prompt</button>
+    <button type="button" onclick="copiarPrompt()">Copiar Prompt</button>
+    <button type="button" onclick="resetForm()">Novo Prompt</button>
   </div>
 
-  <!-- Popup para alertas -->
   <div id="popup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; border:1px solid #000; padding:1rem; z-index:1000;">
     <p id="popup-message"></p>
-    <button onclick="fecharPopup()">Fechar</button>
+    <button type="button" onclick="fecharPopup()">Fechar</button>
   </div>
 
-  <!-- Mensagem de confirmação de cópia -->
-  <div id="snackbar" class="snackbar" style="visibility:hidden; position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#28a745; color:#fff; padding:1rem; border-radius:8px;">
+  <div id="snackbar" style="visibility:hidden; position:fixed; bottom:30px; left:50%; transform:translateX(-50%); padding:1rem; border-radius:8px;" class="snackbar">
     Prompt copiado!
   </div>
-<script>
-  // Atualiza os modelos de carro com base na montadora selecionada
-  function atualizarModelos() {
-    const montadora = document.getElementById('montadora').value;
-    const modelos = {
-      'Volkswagen': ['Nivus', 'Amarok', 'Virtus', 'T-Cross'],
-      'Renault': ['Kwid', 'Duster', 'Captur', 'Oroch'],
-      'Peugeot': ['208', '2008', 'Partner Rapid'],
-      'BYD': ['Dolphin', 'Yuan Plus', 'Song Plus'],
-      'Chevrolet': ['Onix', 'Tracker', 'Montana', 'S10'],
-      'Fiat': ['Argo', 'Pulse', 'Strada', 'Toro'],
-      'Ford': ['Ranger', 'Maverick', 'Bronco Sport'],
-      'GWM': ['Haval H6', 'Poer'],
-      'KIA': ['Stonic', 'Sportage', 'Cerato']
+
+  <script>
+    // Atualiza os modelos de carro com base na montadora selecionada
+    function atualizarModelos() {
+      const montadora = document.getElementById('montadora').value;
+      const modelos = {
+        'Volkswagen': ['Nivus', 'Amarok', 'Virtus', 'T-Cross'],
+        'Renault': ['Kwid', 'Duster', 'Captur', 'Oroch'],
+        'Peugeot': ['208', '2008', 'Partner Rapid'],
+        'BYD': ['Dolphin', 'Yuan Plus', 'Song Plus'],
+        'Chevrolet': ['Onix', 'Tracker', 'Montana', 'S10'],
+        'Fiat': ['Argo', 'Pulse', 'Strada', 'Toro'],
+        'Ford': ['Ranger', 'Maverick', 'Bronco Sport'],
+        'GWM': ['Haval H6', 'Poer'],
+        'KIA': ['Stonic', 'Sportage', 'Cerato']
+      };
+
+      const selectModelo = document.getElementById('carroSimples');
+      selectModelo.innerHTML = '<option value="">Selecione o modelo</option>';
+      selectModelo.disabled = true;
+
+      if (montadora && modelos[montadora]) {
+        modelos[montadora].forEach(modelo => {
+          const opt = document.createElement('option');
+          opt.value = `${montadora} ${modelo}`;
+          opt.textContent = `${montadora} ${modelo}`;
+          selectModelo.appendChild(opt);
+        });
+        selectModelo.disabled = false;
+      }
+    }
+
+    // Recuperar último prompt salvo ao carregar a página
+    window.onload = function () {
+      const ultimoPrompt = localStorage.getItem('promptGerado');
+      if (ultimoPrompt) {
+        document.getElementById('promptText').value = ultimoPrompt;
+        document.getElementById('output').style.display = 'block';
+      }
     };
 
-    const selectModelo = document.getElementById('carroSimples');
-    selectModelo.innerHTML = '<option value="">Selecione o carro</option>';
-
-    if (montadora && modelos[montadora]) {
-      modelos[montadora].forEach(modelo => {
-        const opt = document.createElement('option');
-        opt.value = `${montadora} ${modelo}`;
-        opt.textContent = `${montadora} ${modelo}`;
-        selectModelo.appendChild(opt);
-      });
+    // Função para salvar prompt no localStorage
+    function salvarPromptLocal(prompt) {
+      localStorage.setItem('promptGerado', prompt);
     }
-  }
-  // Recuperar último prompt salvo ao carregar a página
-  window.onload = function () {
-    const ultimoPrompt = localStorage.getItem('promptGerado');
-    if (ultimoPrompt) {
-      document.getElementById('promptText').value = ultimoPrompt;
-      document.getElementById('output').style.display = 'block';
+
+    // Função para exibir popup
+    function abrirPopup(mensagem) {
+      document.getElementById('popup-message').innerText = mensagem;
+      document.getElementById('popup').style.display = 'block';
     }
-  };
 
-  // Função para salvar prompt no localStorage
-  function salvarPromptLocal(prompt) {
-  localStorage.setItem('promptGerado', prompt);
-}
-  function salvarPromptLocal(prompt) {
-  localStorage.setItem('promptGerado', prompt);
-}
+    function fecharPopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
 
-  // Exemplo de uso: salve isso dentro da função gerarPrompt()
     // Função principal que gera o prompt baseado nos campos do formulário
-  function gerarPrompt() {
-    const carro = document.getElementById('carroSimples').value;
-    const cor = document.getElementById('cor').value;
-    const ambiente = document.getElementById('ambiente').value;
-    const capo = document.getElementById('capo').value;
-    const desfoque = document.getElementById('desfoque').value;
-    const enquadramento = document.getElementById('enquadramento').value;
-    const lente = document.getElementById('lente').value;
-    const removerMecanico = document.getElementById('removerMecanico').value;
-    const horaDia = document.getElementById('horaDia').value;
-    const tipoEstrada = document.getElementById('tipoEstrada').value;
-
-    if (!carro || !cor) {
-      abrirPopup("Por favor, selecione pelo menos o modelo do carro e a cor.");
-      return;
-    }
-
-    const prompt = `${removerMecanico === 'yes'
-      ? `A photo of a ${carro} car painted ${cor}, model year 2024, parked in a ${ambiente}${capo ? ', ' + capo : ''}.`
-      : `A photo of a Brazilian mechanic in a dark blue jumpsuit, working on a ${carro} car painted ${cor}, model year 2024, parked in a ${ambiente}${capo ? ', ' + capo : ''}.`}
-      ${desfoque ? 'The background should be heavily blurred.' : ''}
-      The scene must be brightly and evenly lit with natural light, ensuring all elements are clearly visible.
-      The car must not display any license plate or identifying marks, ensuring it looks completely generic and suitable for commercial use.
-      The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.
-      ${horaDia ? 'Scene occurs ' + horaDia + '.' : ''}
-      ${tipoEstrada ? 'The car is ' + tipoEstrada + '.' : ''}`;
-
-    document.getElementById('promptText').value = prompt.trim();
-    document.getElementById('preview').innerText = prompt.trim();
-    document.getElementById('output').style.display = 'block';
-
-    salvarPromptLocal(prompt); // salva no localStorage
-  }
-
-  // Função para gerar valores aleatórios e preencher o formulário
-  function gerarAleatorio() {
-    const montadoras = ["Volkswagen", "Renault", "Peugeot", "BYD", "Chevrolet", "Fiat", "Ford", "GWM", "KIA"];
-    const cores = ["white", "black", "blue", "gray", "orange", "red", "silver", "beige", "green", "yellow", "brown", "wine", "gold", "champagne", "dark gray"];
-    const ambientes = ["urban alleyway", "automotive workshop", "car dealership interior", "garage with tools", "street next to a garage", "industrial auto bay", "highway scene", "road with motion blur", "commercial parking lot"];
-    const capos = ["", "with the hood open"];
-    const desfoques = ["blur", "none"];
-    const enquadramentos = ["medium shot", "wide shot", "3/4 front view"];
-    const lentes = ["24mm at 1 meter", "35mm at 2 meters", "35mm at 3 meters"];
-    const mecanico = ["yes", "no"];
-
-    function aleatorio(lista) {
-      return lista[Math.floor(Math.random() * lista.length)];
-    }
-
-    const montadora = aleatorio(montadoras);
-    document.getElementById("montadora").value = montadora;
-    atualizarModelos();
-    setTimeout(() => {
-      const modelos = document.getElementById("carroSimples");
-      if (modelos.options.length > 1) {
-        modelos.selectedIndex = Math.floor(Math.random() * (modelos.options.length - 1)) + 1;
+    function gerarPrompt() {
+      const carro = document.getElementById('carroSimples').value;
+      const cor = document.getElementById('cor').value;
+      if (!carro || !cor) {
+        abrirPopup("Por favor, selecione pelo menos o modelo do carro e a cor.");
+        return;
       }
-      document.getElementById("cor").value = aleatorio(cores);
-      document.getElementById("ambiente").value = aleatorio(ambientes);
-      document.getElementById("capo").value = aleatorio(capos);
-      document.getElementById("desfoque").value = aleatorio(desfoques);
-      document.getElementById("horaDia").value = aleatorio(["in the morning", "at noon", "in the afternoon", "in the evening", "at night"]);
-      document.getElementById("tipoEstrada").value = aleatorio(["on a freshly paved road", "on a dirt road", "on a wet road", "on a busy avenue"]);
-      document.getElementById("enquadramento").value = aleatorio(enquadramentos);
-      document.getElementById("lente").value = aleatorio(lentes);
-      document.getElementById("removerMecanico").value = aleatorio(mecanico);
-      gerarPrompt();
-    }, 50);
-  }
+      const ambiente = document.getElementById('ambiente').value;
+      const capo = document.getElementById('capo').value;
+      const desfoque = document.getElementById('desfoque').value;
+      const enquadramento = document.getElementById('enquadramento').value;
+      const lente = document.getElementById('lente').value;
+      const removerMecanico = document.getElementById('removerMecanico').value;
+      const horaDia = document.getElementById('horaDia').value;
+      const tipoEstrada = document.getElementById('tipoEstrada').value;
 
-  // Função para copiar o prompt para a área de transferência
-  function copiarPrompt() {
-    const textarea = document.getElementById('promptText');
-    textarea.select();
-    textarea.setSelectionRange(0, 99999); // compatível com mobile
-    document.execCommand("copy");
+      const prompt = `${removerMecanico === 'yes'
+        ? `A photo of a ${carro} car painted ${cor}, model year 2024, parked in a ${ambiente}${capo ? ', ' + capo : ''}.`
+        : `A photo of a Brazilian mechanic in a dark blue jumpsuit, working on a ${carro} car painted ${cor}, model year 2024, parked in a ${ambiente}${capo ? ', ' + capo : ''}.`}\n      ${desfoque === 'blur' ? 'The background should be heavily blurred.' : ''}\n      The scene must be brightly and evenly lit with natural light, ensuring all elements are clearly visible.\n      The car must not display any license plate or identifying marks, ensuring it looks completely generic and suitable for commercial use.\n      The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.\n      ${horaDia ? 'Scene occurs ' + horaDia + '.' : ''}\n      ${tipoEstrada ? 'The car is ' + tipoEstrada + '.' : ''}`;
 
-    const snackbar = document.getElementById("snackbar");
-    snackbar.style.visibility = "visible";
-    setTimeout(() => {
-      snackbar.style.visibility = "hidden";
-    }, 3000);
-  }
+      document.getElementById('promptText').value = prompt.trim();
+      document.getElementById('preview').innerText = prompt.trim();
+      document.getElementById('output').style.display = 'block';
+      salvarPromptLocal(prompt);
+    }
 
-  // Função para resetar o formulário e ocultar o prompt
-  function resetForm() {
-    document.querySelector('form').reset();
-    document.getElementById('output').style.display = 'none';
-    document.getElementById('promptText').value = '';
-    localStorage.removeItem('promptGerado');
-  }
+    // Função para gerar valores aleatórios e preencher o formulário
+    function gerarAleatorio() {
+      const montadoras = ["Volkswagen", "Renault", "Peugeot", "BYD", "Chevrolet", "Fiat", "Ford", "GWM", "KIA"];
+      const cores = ["white", "black", "blue", "gray", "orange", "red", "silver", "beige", "green", "yellow", "brown", "wine", "gold", 
+      "champagne", "dark gray"];
+      const ambientes = ["urban alleyway", "automotive workshop", "car dealership interior", "garage with tools", "street next to a garage", "industrial auto bay", "highway scene", 
+      "road with motion blur", "commercial parking lot"];
+      const capos = ["", "with the hood open"];
+      const desfoques = ["blur", "none"];
+      const enquadramentos = ["medium shot", "wide shot", "3/4 front view"];
+      const lentes = ["24mm at 1 meter", "35mm at 2 meters", "35mm at 3 meters"];
+      const mecanico = ["yes", "no"];
+
+      function aleatorio(lista) {
+        return lista[Math.floor(Math.random() * lista.length)];
+      }
+
+      const montadora = aleatorio(montadoras);
+      document.getElementById("montadora").value = montadora;
+      atualizarModelos();
+      setTimeout(() => {
+        const modelos = document.getElementById("carroSimples");
+        if (!modelos.disabled) modelos.selectedIndex = Math.floor(Math.random() * (modelos.options.length - 1)) + 1;
+        document.getElementById("cor").value = aleatorio(cores);
+        document.getElementById("ambiente").value = aleatorio(ambientes);
+        document.getElementById("capo").value = aleatorio(capos);
+        document.getElementById("desfoque").value = aleatorio(desfoques);
+        document.getElementById("horaDia").value = aleatorio(["in the morning", "at noon", "in the afternoon", "in the evening", "at night"]);
+        document.getElementById("tipoEstrada").value = aleatorio(["on a freshly paved road", "on a dirt road", "on a wet road", "on a busy avenue"]);
+        document.getElementById("enquadramento").value = aleatorio(enquadramentos);
+        document.getElementById("lente").value = aleatorio(lentes);
+        document.getElementById("removerMecanico").value = aleatorio(mecanico);
+        gerarPrompt();
+      }, 50);
+    }
+
+    // Função para copiar o prompt para a área de transferência
+    function copiarPrompt() {
+      const textarea = document.getElementById('promptText');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+
+      const snackbar = document.getElementById("snackbar");
+      snackbar.style.visibility = "visible";
+      setTimeout(() => {
+        snackbar.style.visibility = "hidden";
+      }, 3000);
+    }
+
+    // Função para resetar o formulário e ocultar o prompt
+    function resetForm() {
+      document.querySelector('form').reset();
+      document.getElementById('output').style.display = 'none';
+      document.getElementById('promptText').value = '';
+      localStorage.removeItem('promptGerado');
+    }
   </script>
 </body>
 </html>
