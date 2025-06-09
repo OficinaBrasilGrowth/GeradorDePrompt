@@ -3,257 +3,393 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prompt Generator Volkswagen - Imagen 3</title>
+  <title>Prompt Generator - Imagen 3</title>
   <style>
     :root {
-      --primary-color: #007bff;
-      --secondary-color: #0056b3;
-      --highlight: #cce5ff;
-      --border-color: #d0d7de;
-      --section-bg: #eaf4ff;
+      --primary: #111;
+      --accent: #b7ff00;
+      --gray: #f9f9f9;
+      --gray-dark: #e0e0e0;
+      --text: #1a1a1a;
+      --shadow: 0 0 0 1px #ccc, 0 2px 6px rgba(0, 0, 0, 0.05);
     }
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9fafb;
-      padding: 1rem;
-      color: #333;
-    }
-    h1 { color: var(--primary-color); text-align: center; }
-    .form-section {
-      background-color: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #fff;
+      color: var(--text);
       padding: 2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto;
     }
-    .form-group {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background-color: var(--section-bg);
-      border-radius: 6px;
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-    .form-group h2 {
-      margin-top: 0;
-      font-size: 1.2rem;
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
+    fieldset {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: var(--gray);
+      border: none;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
     }
+    legend {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  background: #fff;
+  display: inline-block;
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+}
     label {
-      display: block;
       font-weight: 600;
       margin-top: 1rem;
-      color: #444;
+      display: block;
     }
-    select, textarea {
+    select, button, textarea {
       width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.3rem;
+      padding: 0.75rem;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 1rem;
-    }
-    .button-group {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
+      background: white;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
     button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
-      background-color: var(--primary-color);
+      background: var(--primary);
       color: white;
       border: none;
-      border-radius: 6px;
-      transition: background-color 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-    button:hover { background-color: var(--secondary-color); }
-    #copyBtn { background-color: #28a745; }
-    #copyBtn:hover { background-color: #1e7e34; }
-    #resetBtn { background-color: #dc3545; }
-    #resetBtn:hover { background-color: #c82333; }
+    button:hover {
+      background: #333;
+    }
+    button + button {
+      margin-top: 0.5rem;
+    }
     #output {
-      background-color: #f0f8ff;
-      border: 2px solid var(--primary-color);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem auto;
-      max-width: 700px;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-      transition: all 0.3s ease;
+      margin-top: 2rem;
+      padding: 2rem;
+      background: white;
+      border: 2px dashed var(--accent);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
     }
-    #promptText {
-      width: 100%;
-      border: none;
-      resize: vertical;
-      font-size: 1rem;
-      font-family: inherit;
-      background-color: transparent;
-      outline: none;
-      color: #212529;
+    #preview {
+      background: #000;
+      color: var(--accent);
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-family: monospace;
     }
-    @media (max-width: 600px) {
-      .button-group { flex-direction: column; gap: 1rem; }
+    .snackbar {
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
     }
+    small {
+      display: block;
+      color: #555;
+      margin-top: -0.3rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.85em;
+    }
+      
+    
   </style>
 </head>
 <body>
-  <h1>Gerador de Prompt - Imagen 3</h1>
-  <div class="form-section">
-    <div class="form-group">
-      <h2>Informações do Carro</h2>
-      <label for="carroSimples">Escolha o carro</label>
-      <select id="carroSimples">
-        <option value="">---</option>
-        <option value="Volkswagen Nivus">Volkswagen Nivus</option>
-        <option value="Volkswagen Amarok">Volkswagen Amarok</option>
-        <option value="Volkswagen Virtus">Volkswagen Virtus</option>
-        <option value="Volkswagen T-Cross">Volkswagen T-Cross</option>
+  <h1>Gerador de Prompt</h1>
+  <button type="button" onclick="gerarAleatorio()" style="margin-bottom: 1rem;">Gerar Prompt Aleatório</button>
+  <form onsubmit="event.preventDefault(); gerarPrompt();">
+    <fieldset>
+      <legend>Informações do Veículo</legend>
+      
+      <label for="montadora">Montadora:</label>
+      <select id="montadora" onchange="atualizarModelos()">
+        <option value="">Selecione a montadora</option>
+        <option value="Volkswagen">Volkswagen</option>
+        <option value="Renault">Renault</option>
+        <option value="Peugeot">Peugeot</option>
+        <option value="BYD">BYD</option>
+        <option value="Chevrolet">Chevrolet</option>
+        <option value="Fiat">Fiat</option>
+        <option value="Ford">Ford</option>
+        <option value="GWM">GWM</option>
+        <option value="KIA">KIA</option>
       </select>
-      <label for="cor">Cor do carro</label>
+      <label for="carroSimples">Modelo:</label>
+      <select id="carroSimples">
+        <option value="">Selecione o modelo</option>
+      </select>
+      <label for="cor">Cor:</label>
       <select id="cor">
+        <option value="">Selecione a cor</option>
         <option value="white">Branco</option>
         <option value="black">Preto</option>
         <option value="blue">Azul</option>
         <option value="gray">Cinza</option>
         <option value="orange">Laranja</option>
         <option value="red">Vermelho</option>
+        <option value="silver">Prata</option>
+        <option value="beige">Bege</option>
+        <option value="green">Verde</option>
+        <option value="yellow">Amarelo</option>
+        <option value="brown">Marrom</option>
+        <option value="wine">Vinho</option>
+        <option value="gold">Dourado</option>
+        <option value="champagne">Champanhe</option>
+        <option value="dark gray">Cinza escuro</option>
       </select>
-    </div>
-    <div class="form-group">
-      <h2>Cenário e Detalhes</h2>
-      <label for="ambiente">Ambiente</label>
+      <label for="capo">Capô:</label>
+      <select id="capo">
+        <option value="">Selecione</option>
+        <option value="with the hood open">Capô aberto</option>
+        <option value="with the hood closed">Capô fechado</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      
+
+      <label for="horaDia">Hora do Dia:</label>
+      <select id="horaDia">
+        <option value="">Selecione a hora do dia</option>
+        <option value="in the morning">Manhã</option>
+        <option value="at noon">Meio-dia</option>
+        <option value="in the afternoon">Tarde</option>
+        <option value="in the evening">Fim de tarde</option>
+        <option value="at night">Noite</option>
+      </select>
+
+      <label for="tipoEstrada">Tipo de Estrada:</label>
+      <select id="tipoEstrada">
+        <option value="">Selecione o tipo</option>
+        <option value="on a freshly paved road">Asfalto novo</option>
+        <option value="on a dirt road">Estrada de terra</option>
+        <option value="on a wet road">Pista molhada</option>
+        <option value="on a busy avenue">Avenida movimentada</option>
+      </select>
+
+      <label for="ambiente">Ambiente:</label>
       <select id="ambiente">
+        <option value="">Selecione o ambiente</option>
         <option value="urban alleyway">Beco urbano</option>
         <option value="automotive workshop">Oficina mecânica</option>
-        <option value="car dealership interior">Interior de concessionária</option>
+        <option value="car dealership interior">Concessionária</option>
         <option value="garage with tools">Garagem com ferramentas</option>
         <option value="street next to a garage">Rua ao lado de oficina</option>
         <option value="industrial auto bay">Área industrial automotiva</option>
+        <option value="highway scene">Carro na estrada</option>
+        <option value="road with motion blur">Cena de carro em movimento</option>
+        <option value="commercial parking lot">Estacionamento comercial</option>
       </select>
-      <label for="capo">Capô aberto</label>
-      <select id="capo">
-        <option value="">Não</option>
-        <option value="with the hood open">Sim</option>
-      </select>
-      <label for="desfoque">Fundo desfocado</label>
+
+      <label for="desfoque">Fundo desfocado:</label>
       <select id="desfoque">
-        <option value="">Não</option>
+        <option value="">Selecione</option>
         <option value="blur">Sim</option>
+        <option value="none">Não</option>
       </select>
-    </div>
-    <div class="form-group">
-      <h2>Enquadramento e Lente</h2>
-      <label for="enquadramento">Enquadramento</label>
+
+      <label for="enquadramento">Enquadramento:</label>
       <select id="enquadramento">
+        <option value="">Selecione</option>
         <option value="medium shot">Médio</option>
         <option value="wide shot">Aberto</option>
         <option value="3/4 front view">Frontal 3/4</option>
       </select>
-      <label for="lente">Lente</label>
+
+      <label for="lente">Lente:</label>
       <select id="lente">
+        <option value="">Selecione</option>
         <option value="24mm at 1 meter">24mm (1m)</option>
         <option value="35mm at 2 meters">35mm (2m)</option>
         <option value="35mm at 3 meters">35mm (3m)</option>
       </select>
-    </div>
-    <div class="button-group">
-      <button onclick="gerarPrompt()">Gerar Prompt</button>
-      <button onclick="gerarAleatorio()">Prompt Aleatório</button>
-    </div>
+
+      <label for="removerMecanico">Remover mecânico da imagem:</label>
+      <select id="removerMecanico">
+        <option value="">Selecione</option>
+        <option value="no">Não</option>
+        <option value="yes">Sim</option>
+      </select>
+    </fieldset>
+
+    <button id="gerarBtn" type="submit">Gerar Prompt</button>
+    <button type="button" onclick="gerarAleatorio()">Gerar Aleatório</button>
+</form>
+
+  <!-- Área de exibição do prompt gerado -->
+  <div id="output" style="display:none;">
+    <div id="preview" style="margin-bottom:1rem; background:#f0f0f0; padding:1rem; border-radius:8px; font-family:monospace; font-size:0.9em; color:#333;"></div>
+    <h2>Prompt Gerado</h2>
+    <textarea id="promptText" rows="10" cols="100"></textarea>
+    <button onclick="copiarPrompt()">Copiar Prompt</button>
+    <button onclick="resetForm()">Novo Prompt</button>
   </div>
-  <div id="output" style="display:none">
-    <textarea id="promptText" rows="12"></textarea>
+
+  <!-- Popup para alertas -->
+  <div id="popup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; border:1px solid #000; padding:1rem; z-index:1000;">
+    <p id="popup-message"></p>
+    <button onclick="fecharPopup()">Fechar</button>
   </div>
-  <div class="button-group" style="justify-content: center;">
-    <button id="copyBtn" onclick="copiarPrompt()">📋 Copiar Prompt</button>
-    <button id="resetBtn" onclick="resetForm()">🔄 Novo Prompt</button>
+
+  <!-- Mensagem de confirmação de cópia -->
+  <div id="snackbar" class="snackbar" style="visibility:hidden; position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#28a745; color:#fff; padding:1rem; border-radius:8px;">
+    Prompt copiado!
   </div>
 <script>
+  // Atualiza os modelos de carro com base na montadora selecionada
+  function atualizarModelos() {
+    const montadora = document.getElementById('montadora').value;
+    const modelos = {
+      'Volkswagen': ['Nivus', 'Amarok', 'Virtus', 'T-Cross'],
+      'Renault': ['Kwid', 'Duster', 'Captur', 'Oroch'],
+      'Peugeot': ['208', '2008', 'Partner Rapid'],
+      'BYD': ['Dolphin', 'Yuan Plus', 'Song Plus'],
+      'Chevrolet': ['Onix', 'Tracker', 'Montana', 'S10'],
+      'Fiat': ['Argo', 'Pulse', 'Strada', 'Toro'],
+      'Ford': ['Ranger', 'Maverick', 'Bronco Sport'],
+      'GWM': ['Haval H6', 'Poer'],
+      'KIA': ['Stonic', 'Sportage', 'Cerato']
+    };
+
+    const selectModelo = document.getElementById('carroSimples');
+    selectModelo.innerHTML = '<option value="">Selecione o carro</option>';
+
+    if (montadora && modelos[montadora]) {
+      modelos[montadora].forEach(modelo => {
+        const opt = document.createElement('option');
+        opt.value = `${montadora} ${modelo}`;
+        opt.textContent = `${montadora} ${modelo}`;
+        selectModelo.appendChild(opt);
+      });
+    }
+  }
+  // Recuperar último prompt salvo ao carregar a página
+  window.onload = function () {
+    const ultimoPrompt = localStorage.getItem('promptGerado');
+    if (ultimoPrompt) {
+      document.getElementById('promptText').value = ultimoPrompt;
+      document.getElementById('output').style.display = 'block';
+    }
+  };
+
+  // Função para salvar prompt no localStorage
+  function salvarPromptLocal(prompt) {
+  localStorage.setItem('promptGerado', prompt);
+}
+  function salvarPromptLocal(prompt) {
+  localStorage.setItem('promptGerado', prompt);
+}
+
+  // Exemplo de uso: salve isso dentro da função gerarPrompt()
+    // Função principal que gera o prompt baseado nos campos do formulário
   function gerarPrompt() {
-    const ambiente = document.getElementById('ambiente').value;
-    const carro = document.getElementById('carroSimples').value || 'Volkswagen Nivus';
+    const carro = document.getElementById('carroSimples').value;
     const cor = document.getElementById('cor').value;
+    const ambiente = document.getElementById('ambiente').value;
     const capo = document.getElementById('capo').value;
     const desfoque = document.getElementById('desfoque').value;
     const enquadramento = document.getElementById('enquadramento').value;
     const lente = document.getElementById('lente').value;
-    const personagens = [
-      "Brazilian male mechanic wearing a dark blue jumpsuit, working under the hood of a car",
-      "Brazilian mechanic in a dark blue uniform, tightening bolts on the engine",
-      "Brazilian mechanic with sturdy build in dark blue overalls, inspecting vehicle components",
-      "Professional Brazilian mechanic in dark blue jumpsuit using diagnostic tools near the vehicle",
-      "Young Brazilian mechanic in dark blue attire checking fluid levels while leaning over the engine"
-    ];
-    const personagemAleatorio = personagens[Math.floor(Math.random() * personagens.length)];
-    let prompt = `Scene: ${ambiente}.
-Character: ${personagemAleatorio}.
-Car: ${carro}, color: ${cor} ${capo}, without license plate.
-Camera: ${lente}, framing: ${enquadramento}.
-Visual style: editorial, photorealistic.`;
-    prompt += `
+    const removerMecanico = document.getElementById('removerMecanico').value;
+    const horaDia = document.getElementById('horaDia').value;
+    const tipoEstrada = document.getElementById('tipoEstrada').value;
 
-The mechanic should be actively working on the car, in a realistic and professional setting with visible tools and workshop elements. The image must look like a high-quality photograph, not an illustration or digital painting.`;
-    if (desfoque) prompt += ` The background should be heavily blurred with a strong depth of field effect, ensuring the mechanic and the car are the clear focal point of the image.`;
-    prompt += ` The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.`;
+    if (!carro || !cor) {
+      abrirPopup("Por favor, selecione pelo menos o modelo do carro e a cor.");
+      return;
+    }
+
+    const prompt = `${removerMecanico === 'yes'
+      ? `A photo of a ${carro} car painted ${cor}, model year 2024, parked in a ${ambiente}${capo ? ', ' + capo : ''}.`
+      : `A photo of a Brazilian mechanic in a dark blue jumpsuit, working on a ${carro} car painted ${cor}, model year 2024, parked in a ${ambiente}${capo ? ', ' + capo : ''}.`}
+      ${desfoque ? 'The background should be heavily blurred.' : ''}
+      The scene must be brightly and evenly lit with natural light, ensuring all elements are clearly visible.
+      The car must not display any license plate or identifying marks, ensuring it looks completely generic and suitable for commercial use.
+      The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.
+      ${horaDia ? 'Scene occurs ' + horaDia + '.' : ''}
+      ${tipoEstrada ? 'The car is ' + tipoEstrada + '.' : ''}`;
+
+    document.getElementById('promptText').value = prompt.trim();
+    document.getElementById('preview').innerText = prompt.trim();
     document.getElementById('output').style.display = 'block';
-    document.getElementById('promptText').value = prompt;
+
+    salvarPromptLocal(prompt); // salva no localStorage
   }
 
+  // Função para gerar valores aleatórios e preencher o formulário
   function gerarAleatorio() {
-    const ambientes = ["urban alleyway", "automotive workshop", "car dealership interior", "garage with tools", "street next to a garage", "industrial auto bay"];
-    const cores = ["white", "black", "blue", "gray", "orange", "red"];
+    const montadoras = ["Volkswagen", "Renault", "Peugeot", "BYD", "Chevrolet", "Fiat", "Ford", "GWM", "KIA"];
+    const cores = ["white", "black", "blue", "gray", "orange", "red", "silver", "beige", "green", "yellow", "brown", "wine", "gold", "champagne", "dark gray"];
+    const ambientes = ["urban alleyway", "automotive workshop", "car dealership interior", "garage with tools", "street next to a garage", "industrial auto bay", "highway scene", "road with motion blur", "commercial parking lot"];
+    const capos = ["", "with the hood open"];
+    const desfoques = ["blur", "none"];
     const enquadramentos = ["medium shot", "wide shot", "3/4 front view"];
     const lentes = ["24mm at 1 meter", "35mm at 2 meters", "35mm at 3 meters"];
-    const personagens = [
-      "Brazilian male mechanic wearing a dark blue jumpsuit, working under the hood of a car",
-      "Brazilian mechanic in a dark blue uniform, tightening bolts on the engine",
-      "Brazilian mechanic with sturdy build in dark blue overalls, inspecting vehicle components",
-      "Professional Brazilian mechanic in dark blue jumpsuit using diagnostic tools near the vehicle",
-      "Young Brazilian mechanic in dark blue attire checking fluid levels while leaning over the engine"
-    ];
-    const ambiente = ambientes[Math.floor(Math.random() * ambientes.length)];
-    const carro = document.getElementById('carroSimples').value || 'Volkswagen Nivus';
-    const cor = cores[Math.floor(Math.random() * cores.length)];
-    const capo = Math.random() < 0.5 ? 'with the hood open' : '';
-    const desfoque = Math.random() < 0.5;
-    const enquadramento = enquadramentos[Math.floor(Math.random() * enquadramentos.length)];
-    const lente = lentes[Math.floor(Math.random() * lentes.length)];
-    const personagem = personagens[Math.floor(Math.random() * personagens.length)];
-    let prompt = `Scene: ${ambiente}.
-Character: ${personagem}.
-Car: ${carro}, color: ${cor} ${capo}, without license plate.
-Camera: ${lente}, framing: ${enquadramento}.
-Visual style: editorial, photorealistic.`;
-    prompt += `
+    const mecanico = ["yes", "no"];
 
-The mechanic should be actively working on the car, in a realistic and professional setting with visible tools and workshop elements. The image must look like a high-quality photograph, not an illustration or digital painting.`;
-    if (desfoque) prompt += ` The background should be heavily blurred with a strong depth of field effect, ensuring the mechanic and the car are the clear focal point of the image.`;
-    prompt += ` The car should be well-lit, showcasing details like headlights, wheels, and design features, with the blue sky and fluffy clouds creating a serene atmosphere above the cityscape.`;
-    document.getElementById('output').style.display = 'block';
-    document.getElementById('promptText').value = prompt;
+    function aleatorio(lista) {
+      return lista[Math.floor(Math.random() * lista.length)];
+    }
+
+    const montadora = aleatorio(montadoras);
+    document.getElementById("montadora").value = montadora;
+    atualizarModelos();
+    setTimeout(() => {
+      const modelos = document.getElementById("carroSimples");
+      if (modelos.options.length > 1) {
+        modelos.selectedIndex = Math.floor(Math.random() * (modelos.options.length - 1)) + 1;
+      }
+      document.getElementById("cor").value = aleatorio(cores);
+      document.getElementById("ambiente").value = aleatorio(ambientes);
+      document.getElementById("capo").value = aleatorio(capos);
+      document.getElementById("desfoque").value = aleatorio(desfoques);
+      document.getElementById("horaDia").value = aleatorio(["in the morning", "at noon", "in the afternoon", "in the evening", "at night"]);
+      document.getElementById("tipoEstrada").value = aleatorio(["on a freshly paved road", "on a dirt road", "on a wet road", "on a busy avenue"]);
+      document.getElementById("enquadramento").value = aleatorio(enquadramentos);
+      document.getElementById("lente").value = aleatorio(lentes);
+      document.getElementById("removerMecanico").value = aleatorio(mecanico);
+      gerarPrompt();
+    }, 50);
   }
 
+  // Função para copiar o prompt para a área de transferência
   function copiarPrompt() {
-    const output = document.getElementById('promptText').value;
-    navigator.clipboard.writeText(output).then(() => {
-      alert('Prompt copiado com sucesso!');
-    });
+    const textarea = document.getElementById('promptText');
+    textarea.select();
+    textarea.setSelectionRange(0, 99999); // compatível com mobile
+    document.execCommand("copy");
+
+    const snackbar = document.getElementById("snackbar");
+    snackbar.style.visibility = "visible";
+    setTimeout(() => {
+      snackbar.style.visibility = "hidden";
+    }, 3000);
   }
 
+  // Função para resetar o formulário e ocultar o prompt
   function resetForm() {
+    document.querySelector('form').reset();
     document.getElementById('output').style.display = 'none';
     document.getElementById('promptText').value = '';
-    document.querySelectorAll('select').forEach(select => select.value = '');
+    localStorage.removeItem('promptGerado');
   }
-</script>
+  </script>
 </body>
 </html>
